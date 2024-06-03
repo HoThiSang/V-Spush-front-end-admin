@@ -1,0 +1,17 @@
+import './Apexcharts';
+import './Bootstrap';
+import './Config';
+import './DashboardsAnalytics';
+import './ExtendedUiPerfectScrollbar';
+import './FormBasicInputs';
+import  './Helpers';
+import './Highlight';
+import './Jquery';
+import './Main';
+import './Menu';
+import './PagesAccountSettingsAccount'
+import './PerfectScrollbar';
+import './Popper';
+import './UiModals';
+import './UiPopover';
+import './UiToasts';
