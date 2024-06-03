@@ -15,3 +15,7 @@ import './Popper';
 import './UiModals';
 import './UiPopover';
 import './UiToasts';
+import 'https://cdn.datatables.net/2.0.3/js/dataTables.min.js';
+import 'https://code.jquery.com/jquery-3.7.1.min.js';
+import 'https://code.jquery.com/jquery-3.6.0.min.js';
+import 'https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js';
