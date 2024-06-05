@@ -1,7 +1,7 @@
 import React from 'react';
 
 export  const SideBarItem = (props) => {
-    const {title, sub_title } = props;
+    const {title, sub_title:{sub1, sub2} } = props;
   return (
     <li className="menu-item">
       <a href="#!" className="menu-link menu-toggle">
@@ -11,7 +11,14 @@ export  const SideBarItem = (props) => {
       <ul className="menu-sub">
         <li className="menu-item">
           <a href="#!" className="menu-link">
-            <div data-i18n="Account">{sub_title}</div>
+            <div data-i18n="Account">{sub1}</div>
+          </a>
+        </li>
+      </ul>
+      <ul className="menu-sub">
+        <li className="menu-item">
+          <a href="#!" className="menu-link">
+            <div data-i18n="Account">{sub2}</div>
           </a>
         </li>
       </ul>

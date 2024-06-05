@@ -40,3 +40,4 @@ function TdTable({ props }) {
     </tr>
   );
 }
+export default TdTable

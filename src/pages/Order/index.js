@@ -24,7 +24,9 @@ function Order() {
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody class="table-border-bottom-0"></tbody>
+              <tbody class="table-border-bottom-0">
+                
+              </tbody>
             </table>
           </div>
         </div>
