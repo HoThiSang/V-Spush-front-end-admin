@@ -1,14 +1,16 @@
-function TdTable({ props }) {
+function TdTable(props) {
+  const {id, name, address, phone_number, total_price, order_status , payment_method} = props
   return (
-    <tr>
+    <tr key={id}>
       <td>
-        <strong>{props.id}</strong>
+        <strong>{id}</strong>
       </td>
-      <td>{props.item1}</td>
-      <td>{props.item2}</td>
-      <td>{props.item3}</td>
-      <td>{props.item4}</td>
-      <td>{props.item5}</td>
+      <td>{name}</td>
+      <td>{address.slice(0, 20)}</td>
+      <td>{phone_number}</td>
+      <td>{payment_method}</td>
+      <td>{total_price}</td>
+      <td>{order_status}</td>
       <td>
         <div className="dropdown">
           <button

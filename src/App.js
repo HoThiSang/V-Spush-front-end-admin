@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
-import Home from "./pages/Home";
-import { Order } from "./pages";
+// import Home from "./pages/Home";
+import { Order, Blog , CreateBlog} from "./pages";
 import { Footer } from "./layouts/Footer";
 import { NavBar } from "./layouts/NavBar";
 import SideBar from "./layouts/Sidebar";
@@ -15,8 +15,10 @@ function App() {
             <NavBar />
             <Routes>
               <Route>
-                <Route path="/" element={<Home />} />
                 <Route path="/orders" element={<Order />} />
+                <Route path="/blogs" element={<Blog />} />
+                <Route path="/create-blog" element={<CreateBlog />} />
+                {/* <Route path="/orders" element={<Order />} /> */}
               </Route>
             </Routes>
             <Footer />
@@ -24,7 +26,7 @@ function App() {
           </div>
         </div>
       </div>
-      <div class="layout-overlay layout-menu-toggle"></div>
+      <div className="layout-overlay layout-menu-toggle"></div>
     </>
   );
 }
