@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Flex, Input, Button } from "antd";
 import Error from "../../components/Error";
 import axiosService from "../../services/configAxios";
+import { useNavigate } from "react-router";
 
 const { TextArea } = Input;
 
@@ -10,6 +11,7 @@ const CreateBlog = () => {
   const [content, setContent] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -32,6 +34,7 @@ const CreateBlog = () => {
       });
       setTitle('')
       setContent('')
+    navigate('/blogs')
      
     } catch (error) {
     if (error.response && error.response.data && error.response.data.message) {
