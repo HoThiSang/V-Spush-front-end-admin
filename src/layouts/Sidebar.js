@@ -12,7 +12,7 @@ const SideBar = () => {
                         <SideBarItem 
                             key={index}
                             title = {item.title}
-                            sub_title={item.sub_title}
+                            name = {item.name}
                         />
                     ))
                 }

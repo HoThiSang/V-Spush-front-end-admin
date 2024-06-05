@@ -1,3 +1,4 @@
+
 function Order() {
   return (
     <div class="content-wrapper">
@@ -25,7 +26,6 @@ function Order() {
                 </tr>
               </thead>
               <tbody class="table-border-bottom-0">
-                
               </tbody>
             </table>
           </div>
@@ -34,3 +34,6 @@ function Order() {
     </div>
   );
 }
+
+
+export default Order

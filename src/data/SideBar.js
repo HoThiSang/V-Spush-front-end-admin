@@ -1,30 +1,22 @@
 export const SideBarData = [
     {
-       title : 'Order',
-       sub_title: {
-            sub1: 'Order page',
-            sub2: 'Order page'
-    }
+       title : 'Product',
+       name: 'fa-brands fa-product-hunt'
     },
     {
-        title : 'Order',
-        sub_title: {
-            sub1: 'Order page',
-            sub2: 'Order page'
-        }
+        title : 'User',
+        name : 'fa-solid fa-user'
     },
     {
-        title : 'Order',
-        sub_title: {
-            sub1: 'Order page',
-            sub2: 'Order page'
-        }
+        title : 'Order list',
+        name : 'fa-solid fa-list'
     },
     {
-        title : 'Order',
-        sub_title: {
-            sub1: 'Order page',
-            sub2: 'Order page'
-        }
+        title : 'Banner',
+        name : 'fa-solid fa-fire'
+    },
+    {
+        title : 'Blog',
+        name : 'fa-solid fa-blog'
     }
 ]

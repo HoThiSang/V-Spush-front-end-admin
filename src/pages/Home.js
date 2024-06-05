@@ -4,7 +4,7 @@ import { NavBar } from "../layouts/NavBar";
 import SideBar from "../layouts/Sidebar";
 
 
-const Home = () => {
+function Home (){
     return (
         <>
         <div className="layout-wrapper layout-content-navbar">
