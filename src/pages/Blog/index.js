@@ -31,9 +31,8 @@ const Blog = () => {
           <div className="d-flex justify-content">
             <Link
             to={'/create-blog'}
-              className="btn btn-primary "
+              className="btn btn-primary btn-create-new"
               id=""
-              style={{ marginLeft: "10px" }}
             >
               Create new
             </Link>

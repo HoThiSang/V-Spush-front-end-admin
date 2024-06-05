@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axiosService from "../../services/configAxios";
 import userEvent from "@testing-library/user-event";
 import TdTable from "../../components/TdTable";
+import { Link } from "react-router-dom";
 
 function Order() {
   const [orders, setOrders] = useState([]);
@@ -26,9 +27,9 @@ function Order() {
         <div className="card">
           <h5 className="card-header">Users</h5>
           <div className="d-flex justify-content">
-            <a className="btn btn-primary " href="#!" id="">
+            <Link to='' className="btn btn-primary btn-create-new" id="">
               Create new
-            </a>
+            </Link>
           </div>
           <div className="table-responsive text-nowrap">
             <table className="table">

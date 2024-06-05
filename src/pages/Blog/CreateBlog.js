@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Flex, Input, Button } from "antd";
-import Error from "../../components/Error";
+import { Flex, Input, Button, Modal } from "antd";
 import axiosService from "../../services/configAxios";
 import { useNavigate } from "react-router";
-
+import './style.css'
 const { TextArea } = Input;
 
 const CreateBlog = () => {
@@ -11,6 +10,9 @@ const CreateBlog = () => {
   const [content, setContent] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
+  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
   const navigate = useNavigate();
 
   const handleChangeTitle = (e) => {
@@ -32,20 +34,21 @@ const CreateBlog = () => {
         title,
         content
       });
-      setTitle('')
-      setContent('')
-    navigate('/blogs')
-     
+      setTitle('');
+      setContent('');
+      setSuccessMessage('Blog created successfully!');
+      setIsSuccessModalVisible(true);
     } catch (error) {
-    if (error.response && error.response.data && error.response.data.message) {
+      if (error.response && error.response.data && error.response.data.message) {
         setErrorMessage(error.response.data.message);
+        setIsErrorModalVisible(true);
       } else {
         setErrorMessage('An error occurred. Please try again later.');
+        setIsErrorModalVisible(true);
       }
-      return <Error message={errorMessage} />;
     }
-
   };
+
   return (
     <div className="content-wrapper">
       <div className="container-xxl flex-grow-1 container-p-y">
@@ -91,6 +94,22 @@ const CreateBlog = () => {
             </div>
           </div>
         </form>
+        <Modal  className="error"
+          title="Error"
+          open={isErrorModalVisible}
+          onOk={() => setIsErrorModalVisible(false)}
+          onCancel={() => setIsErrorModalVisible(false)}
+        >
+          <p>{errorMessage}</p>
+        </Modal>
+        <Modal
+          title="Success"
+          open={isSuccessModalVisible}
+          onOk={() => setIsSuccessModalVisible(false)}
+          onCancel={() => setIsSuccessModalVisible(false)}
+        >
+          <p>{successMessage}</p>
+        </Modal>
       </div>
     </div>
   );
