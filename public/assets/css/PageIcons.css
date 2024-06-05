@@ -4,7 +4,18 @@
 #icons-container .icon-card i {
   font-size: 2rem;
 }
+.menu-link i {
+  font-size: 1.2em; /* Adjust the value as needed */
+}
+.menu-link i {
+  font-size: 1.2em;
+  vertical-align: middle;
+}
 
+.menu-link div {
+  display: inline-block;
+  vertical-align: middle;
+}
 @media (max-width: 1024px) {
   #icons-container .icon-card {
     width: 126px;
