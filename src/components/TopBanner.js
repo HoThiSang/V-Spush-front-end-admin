@@ -76,7 +76,7 @@ export  const TopBanner = () => {
             </svg>
           </span>
           <span className="app-brand-text demo menu-text fw-bolder ms-2">
-            Sneat
+            V-Spush
           </span>
         </a>
   
