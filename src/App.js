@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
 // import Home from "./pages/Home";
-import { Order, Blog , CreateBlog} from "./pages";
+import { Order, Blog , CreateBlog,ShowContact} from "./pages";
 import { Footer } from "./layouts/Footer";
 import { NavBar } from "./layouts/NavBar";
 import SideBar from "./layouts/Sidebar";
@@ -19,6 +19,7 @@ function App() {
                 <Route path="/blogs" element={<Blog />} />
                 <Route path="/create-blog" element={<CreateBlog />} />
                 {/* <Route path="/orders" element={<Order />} /> */}
+                <Route path="/contacts" element={<ShowContact />} />
               </Route>
             </Routes>
             <Footer />
