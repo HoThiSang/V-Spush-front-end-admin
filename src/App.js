@@ -4,6 +4,7 @@ import { Order, Blog , CreateBlog,ShowContact} from "./pages";
 import { Footer } from "./layouts/Footer";
 import { NavBar } from "./layouts/NavBar";
 import SideBar from "./layouts/Sidebar";
+import Banner from "./pages/Banner";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/create-blog" element={<CreateBlog />} />
                 {/* <Route path="/orders" element={<Order />} /> */}
                 <Route path="/contacts" element={<ShowContact />} />
+                <Route path="/banner" element={<Banner />} />
               </Route>
             </Routes>
             <Footer />
