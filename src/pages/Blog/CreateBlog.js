@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Flex, Input, Button, Modal } from "antd";
+import React, { useState } from "react";
+import { Flex, Input, Modal } from "antd";
 import axiosService from "../../services/configAxios";
-import { useNavigate } from "react-router";
 import './style.css'
 const { TextArea } = Input;
 
@@ -13,7 +12,6 @@ const CreateBlog = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
-  const navigate = useNavigate();
 
   const handleChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -22,18 +20,25 @@ const CreateBlog = () => {
     setContent(e.target.value);
   };
   const handleImageUpload = (e) => {
-    const file = e.target.files[0];
+    setImageFile(e.target.files[0]);
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log("title : ", title);
     console.log("content : ", content);
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('image_url', imageFile);
     try {
-      const response = await axiosService.post("/admin-create-post", {
-        title,
-        content
-      });
+      const response = await axiosService.post("/admin-create-post", formData,{
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+    }
+        
+       );
       setTitle('');
       setContent('');
       setSuccessMessage('Blog created successfully!');
@@ -55,7 +60,7 @@ const CreateBlog = () => {
         <h4 className="fw-bold py-3 mb-4">
           <span className="text-muted fw-light">Forms/</span> Create new blog{" "}
         </h4>
-        <form onSubmit={handleFormSubmit}>
+        <form onSubmit={handleFormSubmit} >
           <div class="row">
             <div class="col-xl">
               <div class="card mb-4">
@@ -83,7 +88,6 @@ const CreateBlog = () => {
                     <input
                       type="file"
                       onChange={handleImageUpload}
-                      value={imageFile}
                     />
                     <button className="btn btn-outline-primary" type="submit">
                       Submit

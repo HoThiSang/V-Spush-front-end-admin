@@ -21,7 +21,7 @@ export const Footer = () => {
             target="_blank"
             rel="noreferrer"
           >
-            License
+            About us
           </a>
           <a
             href="#!"
@@ -29,7 +29,7 @@ export const Footer = () => {
             class="footer-link me-4"
             rel="noreferrer"
           >
-            More Themes
+            More 
           </a>
 
           <a
@@ -38,16 +38,15 @@ export const Footer = () => {
             class="footer-link me-4"
             rel="noreferrer"
           >
-            Documentation
           </a>
 
           <a
-            href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+            href="#!"
             target="_blank"
             class="footer-link me-4"
             rel="noreferrer"
           >
-            Support
+            Admin
           </a>
         </div>
       </div>
