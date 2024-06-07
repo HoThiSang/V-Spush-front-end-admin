@@ -1,5 +1,5 @@
 import {  Routes, Route, Navigate } from "react-router-dom";
-import { Order, Blog, CreateBlog, ShowContact, UpdateContact, UpdateBlog , Product} from "./pages";
+import { Order, Blog, CreateBlog, ShowContact, UpdateContact, UpdateBlog , Product,ShowCategory} from "./pages";
 import Login from "./pages/Login";
 import React from "react";
 
@@ -16,6 +16,7 @@ function App() {
         <Route path="/update-contact" element={<UpdateContact />} />
         <Route path="/update-blog/:id" element={<UpdateBlog />} />
         <Route path="/products" element={<Product />} />
+        <Route path="/categories" element={<ShowCategory />} />
       </Routes>
 
   );
