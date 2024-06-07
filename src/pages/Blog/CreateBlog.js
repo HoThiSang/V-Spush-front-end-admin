@@ -1,19 +1,25 @@
 import React, { useState } from "react";
 import { Flex, Input, Modal } from "antd";
 import axiosService from "../../services/configAxios";
-import './style.css'
+import "./style.css";
+import { useForm } from "react-hook-form";
 const { TextArea } = Input;
 
 const CreateBlog = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [imageFile, setImageFile] = useState(null);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
-  const [image, setImage] = useState(null)
-  
+  const [image, setImage] = useState(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
+
   const handleChangeTitle = (e) => {
     setTitle(e.target.value);
   };
@@ -22,10 +28,9 @@ const CreateBlog = () => {
   };
   const handleImageUpload = (e) => {
     if (e.target.files && e.target.files[0]) {
-        setImage(URL.createObjectURL(e.target.files[0]));
-        setImageFile(e.target.files[0]);
-      }
- 
+      setImage(URL.createObjectURL(e.target.files[0]));
+      setImageFile(e.target.files[0]);
+    }
   };
 
   const handleFormSubmit = async (e) => {
@@ -33,28 +38,30 @@ const CreateBlog = () => {
     console.log("title : ", title);
     console.log("content : ", content);
     const formData = new FormData();
-    formData.append('title', title);
-    formData.append('content', content);
-    formData.append('image_url', imageFile);
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("image_url", imageFile);
     try {
-      const response = await axiosService.post("/admin-create-post", formData,{
+      const response = await axiosService.post("/admin-create-post", formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          "Content-Type": "multipart/form-data"
         }
-    }
-        
-       );
-      setTitle('');
-      setContent('');
-      setImageFile(null)
-      setSuccessMessage('Blog created successfully!');
+      });
+      setTitle("");
+      setContent("");
+      setImageFile(null);
+      setSuccessMessage("Blog created successfully!");
       setIsSuccessModalVisible(true);
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.message) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
         setErrorMessage(error.response.data.message);
         setIsErrorModalVisible(true);
       } else {
-        setErrorMessage('An error occurred. Please try again later.');
+        setErrorMessage("An error occurred. Please try again later.");
         setIsErrorModalVisible(true);
       }
     }
@@ -66,7 +73,7 @@ const CreateBlog = () => {
         <h4 className="fw-bold py-3 mb-4">
           <span className="text-muted fw-light">Forms/</span> Create new blog{" "}
         </h4>
-        <form onSubmit={handleFormSubmit} >
+        <form onSubmit={handleSubmit(handleFormSubmit)}>
           <div class="row">
             <div class="col-xl">
               <div class="card mb-4">
@@ -76,7 +83,15 @@ const CreateBlog = () => {
                 </div>
                 <div class="card-body">
                   <Flex vertical gap={32}>
+                  {errors.title && <span className="error">{errors.title.message}</span>}
                     <TextArea
+                      {...register("title", {
+                        required: "Title is required",
+                        maxLength: {
+                          value: 100,
+                          message: "Title must be less than 100 characters"
+                        }
+                      })}
                       showCount
                       maxLength={100}
                       placeholder="Enter blog title"
@@ -96,7 +111,7 @@ const CreateBlog = () => {
                       onChange={handleImageUpload}
                       accept="image/*"
                     />
-                      <img  src={image } alt=''  className="image-fluid"/>
+                    <img src={image} alt="" className="image-fluid" />
                     <button className="btn btn-outline-primary" type="submit">
                       Submit
                     </button>
@@ -106,7 +121,8 @@ const CreateBlog = () => {
             </div>
           </div>
         </form>
-        <Modal  className="error"
+        <Modal
+          className="error"
           title="Error"
           open={isErrorModalVisible}
           onOk={() => setIsErrorModalVisible(false)}
