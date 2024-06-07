@@ -26,17 +26,17 @@ function ShowContact() {
       <div className="content-wrapper">
         <div className="container-xxl flex-grow-1 container-p-y">
           <div className="card">
-            <h5 className="card-header">Contacts</h5>
+            <h5 className="card-header title-contact">Contacts</h5>
             <div className="table-responsive text-nowrap">
               <table className="table">
                 <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Subject</th>
-                    <th>Message</th>
-                    <th>Contact Status</th>
-                    <th>Action</th>
+                  <tr >
+                    <th className="title-contact">Name</th>
+                    <th className="title-contact">Email</th>
+                    <th className="title-contact">Subject</th>
+                    <th className="title-contact">Message</th>
+                    <th className="title-contact">Contact Status</th>
+                    <th className="title-contact">Action</th>
                   </tr>
                 </thead>
                 <tbody className="table-border-bottom-0">
@@ -68,6 +68,10 @@ function ShowContact() {
                               index === openedMenuIndex ? "show" : ""
                             }`}
                           >
+                           <Link to={`/update-contact/${contact.id}`} className="dropdown-item">
+                          <i className="fa-solid fa-pen"></i> Edit
+                          </Link>
+
                          
                             <a className="dropdown-item" href="#!">
                               <i className="fa-solid fa-trash"></i>
