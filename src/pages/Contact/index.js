@@ -13,6 +13,7 @@ function ShowContact() {
     try {
       const response = await axiosService.get(`/admin-contact`);
       setContact(response.data.data);
+      console.log(response.data.data)
     } catch (error) {
       console.log("Error get all contact", error);
     }

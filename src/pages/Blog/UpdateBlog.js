@@ -11,6 +11,9 @@ const UpdateBlog = () => {
   const [imageFile, setImageFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
+
   const [image, setImage] = useState(null)
 
     const {id} = useParams();
@@ -19,6 +22,9 @@ const UpdateBlog = () => {
     try {
       const response = await axiosService.get(`/admin-show-post/${id}`);
       setBlog(response.data.data)
+      setTitle(response.data.data.title);
+      setContent(response.data.data.content);
+      setImage(response.data.data.image_url);
     } catch (error) {
       if ( error.response && error.response.data && error.response.data.message) {
         setErrorMessage(error.response.data.message);
@@ -34,9 +40,10 @@ const UpdateBlog = () => {
     getBlogData(id);
   }, [id])
 
-  console.log(blog)
+  
   const handleChangeTitle = (e) => {
     setTitle(e.target.value);
+    
   };
   const handleChangeContent = (e) => {
     setContent(e.target.value);
@@ -49,7 +56,7 @@ const UpdateBlog = () => {
  
   };
 
-  const handleFormSubmit = async (e) => {
+    const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log("title : ", title);
     console.log("content : ", content);
@@ -57,29 +64,37 @@ const UpdateBlog = () => {
     formData.append("title", title);
     formData.append("content", content);
     formData.append("image_url", imageFile);
+    console.log(formData)
     try {
       const response = await axiosService.post("/admin-create-post", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
       });
-      setTitle("");
-      setContent("");
-      setImageFile(null)
-    } catch (error) {}
+       setSuccessMessage('Blog updated successfully!');
+      setIsSuccessModalVisible(true);
+    } catch (error) {
+        if ( error.response && error.response.data && error.response.data.message) {
+            setErrorMessage(error.response.data.message);
+            setIsErrorModalVisible(true);
+          } else {
+            setErrorMessage("An error occurred. Please try again later.");
+            setIsErrorModalVisible(true);
+          }
+    }
   };
   return (
     <div className="content-wrapper">
       <div className="container-xxl flex-grow-1 container-p-y">
         <h4 className="fw-bold py-3 mb-4">
-          <span className="text-muted fw-light">Forms/</span> Create new blog{" "}
+          <span className="text-muted fw-light">Forms/</span>Update blog{" "}
         </h4>
         <form onSubmit={handleFormSubmit}>
           <div class="row">
             <div class="col-xl">
               <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                  <h5 class="mb-0">Add new blog</h5>
+                  <h5 class="mb-0">Update blog</h5>
                   <small class="text-muted float-end">l</small>
                 </div>
                 <div class="card-body">
@@ -89,7 +104,7 @@ const UpdateBlog = () => {
                       maxLength={100}
                       placeholder="Enter blog title"
                       onChange={handleChangeTitle}
-                      value={blog.title}
+                      value={title}
                     />
                     <TextArea
                       showCount
@@ -97,7 +112,7 @@ const UpdateBlog = () => {
                       placeholder="Enter blog content"
                       style={{ height: 140, resize: "none" }}
                       onChange={handleChangeContent}
-                      value={blog.content}
+                      value={content}
                     />
                     <input
                       type="file"
@@ -124,7 +139,14 @@ const UpdateBlog = () => {
           >
             <p>{errorMessage}</p>
           </Modal>
-          
+          <Modal
+          title="Success"
+          open={isSuccessModalVisible}
+          onOk={() => setIsSuccessModalVisible(false)}
+          onCancel={() => setIsSuccessModalVisible(false)}
+        >
+          <p>{successMessage}</p>
+        </Modal>
       </div>
     </div>
   );
