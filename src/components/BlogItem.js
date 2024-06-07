@@ -9,7 +9,8 @@ const BlogItem = (props) => {
     image_url,
     image_name,
     openedMenuIndex,
-    toggleMenu
+    toggleMenu,
+    handleDeleteBlog
   } = props;
   return (
     <tr key={id}>
@@ -41,10 +42,12 @@ const BlogItem = (props) => {
             <Link className="dropdown-item" to={`/update-blog/${id}`}>
               <i className="fa-solid fa-pen"></i> Edit
             </Link>
-            <a className="dropdown-item" href="#!">
+           
+              <button className="btn" onClick={()=>handleDeleteBlog(id)}>
               <i className="fa-solid fa-trash"></i>
               Delete
-            </a>
+              </button>
+          
           </div>
         </div>
       </td>

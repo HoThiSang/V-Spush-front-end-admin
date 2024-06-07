@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axiosService from "../../services/configAxios";
-import { Link } from "react-router-dom";
 function ShowContact() {
   const [contacts, setContact] = useState([]);
   const [openedMenuIndex, setOpenedMenuIndex] = useState(null);
