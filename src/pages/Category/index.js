@@ -41,9 +41,6 @@ function ShowCategory() {
                         <strong>{category.id}</strong>
                       </td>
                       <td>{category.category_name}</td>
-                      {/* <td>{category.subject}</td>
-                      <td>{category.message}</td>
-                      <td>{category.contact_status}</td> */}
                       <td>
                         <div className="dropdown">
                           <button
