@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axiosService from "../../services/configAxios";
 import "./style.css";
 import { Link } from "react-router-dom";
+import BlogItem from '../../components/BlogItem'
 const Blog = () => {
   const [blogs, setBlog] = useState([]);
   const [openedMenuIndex, setOpenedMenuIndex] = useState(null);
@@ -50,47 +51,17 @@ const Blog = () => {
               </thead>
               <tbody className="table-border-bottom-0">
                 {blogs.map((blog, index) => (
-                  <tr key={blog.id}>
-                    <td>
-                      <strong>{blog.id}</strong>
-                    </td>
-                    <td>
-                      <img
-                        src={blog.image_url}
-                        alt=""
-                        style={{ maxWidth: "200px" }}
-                      />
-                    </td>
-                    <td>{blog.title.slice(0, 35)}</td>
-                    <td>{blog.content.slice(0, 40)}</td>
-                    <td>
-                      <div className="dropdown">
-                        <button
-                          type="button"
-                          className={`btn p-10 dropdown-toggle hide-arrow ${
-                            index === openedMenuIndex ? "show" : ""
-                          }`}
-                          data-bs-toggle="dropdown"
-                          onClick={() => toggleMenu(index)}
-                        >
-                          <i className="fa-solid fa-ellipsis-vertical"></i>
-                        </button>
-                        <div
-                          className={`dropdown-menu ${
-                            index === openedMenuIndex ? "show" : ""
-                          }`}
-                        >
-                          <a className="dropdown-item" href="#!">
-                            <i className="fa-solid fa-pen"></i> Edit
-                          </a>
-                          <a className="dropdown-item" href="#!">
-                            <i className="fa-solid fa-trash"></i>
-                            Delete
-                          </a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
+                  <BlogItem 
+                    key={blog.id}
+                    id={blog.id}
+                    index={index}
+                    title={blog.title}
+                    content={blog.content}
+                    image_url={blog.image_url}
+                    image_name={blog.image_name}
+                    toggleMenu={()=>toggleMenu(index)}
+                    openedMenuIndex={openedMenuIndex}
+                  />
                 ))}
               </tbody>
             </table>

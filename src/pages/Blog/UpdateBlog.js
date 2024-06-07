@@ -1,19 +1,40 @@
-import React, { useState } from "react";
-import { Flex, Input, Modal } from "antd";
+import { useEffect, useState } from "react";
 import axiosService from "../../services/configAxios";
-import './style.css'
+import { useParams } from "react-router";
+import { Flex, Input, Modal } from "antd";
 const { TextArea } = Input;
 
-const CreateBlog = () => {
+const UpdateBlog = () => {
+  const [blog, setBlog] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [imageFile, setImageFile] = useState(null);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
-  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
   const [image, setImage] = useState(null)
-  
+
+    const {id} = useParams();
+    console.log(id)
+  const getBlogData = async (id) => {
+    try {
+      const response = await axiosService.get(`/admin-show-post/${id}`);
+      setBlog(response.data.data)
+    } catch (error) {
+      if ( error.response && error.response.data && error.response.data.message) {
+        setErrorMessage(error.response.data.message);
+        setIsErrorModalVisible(true);
+      } else {
+        setErrorMessage("An error occurred. Please try again later.");
+        setIsErrorModalVisible(true);
+      }
+    }
+  };
+
+  useEffect(()=> {
+    getBlogData(id);
+  }, [id])
+
+  console.log(blog)
   const handleChangeTitle = (e) => {
     setTitle(e.target.value);
   };
@@ -33,40 +54,27 @@ const CreateBlog = () => {
     console.log("title : ", title);
     console.log("content : ", content);
     const formData = new FormData();
-    formData.append('title', title);
-    formData.append('content', content);
-    formData.append('image_url', imageFile);
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("image_url", imageFile);
     try {
-      const response = await axiosService.post("/admin-create-post", formData,{
+      const response = await axiosService.post("/admin-create-post", formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          "Content-Type": "multipart/form-data"
         }
-    }
-        
-       );
-      setTitle('');
-      setContent('');
+      });
+      setTitle("");
+      setContent("");
       setImageFile(null)
-      setSuccessMessage('Blog created successfully!');
-      setIsSuccessModalVisible(true);
-    } catch (error) {
-      if (error.response && error.response.data && error.response.data.message) {
-        setErrorMessage(error.response.data.message);
-        setIsErrorModalVisible(true);
-      } else {
-        setErrorMessage('An error occurred. Please try again later.');
-        setIsErrorModalVisible(true);
-      }
-    }
+    } catch (error) {}
   };
-
   return (
     <div className="content-wrapper">
       <div className="container-xxl flex-grow-1 container-p-y">
         <h4 className="fw-bold py-3 mb-4">
           <span className="text-muted fw-light">Forms/</span> Create new blog{" "}
         </h4>
-        <form onSubmit={handleFormSubmit} >
+        <form onSubmit={handleFormSubmit}>
           <div class="row">
             <div class="col-xl">
               <div class="card mb-4">
@@ -81,22 +89,24 @@ const CreateBlog = () => {
                       maxLength={100}
                       placeholder="Enter blog title"
                       onChange={handleChangeTitle}
-                      value={title}
+                      value={blog.title}
                     />
                     <TextArea
                       showCount
-                      maxLength={500}
+                      maxLength={5000}
                       placeholder="Enter blog content"
-                      style={{ height: 120, resize: "none" }}
+                      style={{ height: 140, resize: "none" }}
                       onChange={handleChangeContent}
-                      value={content}
+                      value={blog.content}
                     />
                     <input
                       type="file"
-                      onChange={handleImageUpload}
+                      multiple="multiple"
                       accept="image/*"
+                      onChange={handleImageUpload}
                     />
-                      <img  src={image } alt=''  className="image-fluid"/>
+
+                    <img  src={image ? image: blog.image_url } alt={blog.image_name}  className="image-fluid"/>
                     <button className="btn btn-outline-primary" type="submit">
                       Submit
                     </button>
@@ -107,24 +117,17 @@ const CreateBlog = () => {
           </div>
         </form>
         <Modal  className="error"
-          title="Error"
-          open={isErrorModalVisible}
-          onOk={() => setIsErrorModalVisible(false)}
-          onCancel={() => setIsErrorModalVisible(false)}
-        >
-          <p>{errorMessage}</p>
-        </Modal>
-        <Modal
-          title="Success"
-          open={isSuccessModalVisible}
-          onOk={() => setIsSuccessModalVisible(false)}
-          onCancel={() => setIsSuccessModalVisible(false)}
-        >
-          <p>{successMessage}</p>
-        </Modal>
+            title="Error"
+            open={isErrorModalVisible}
+            onOk={() => setIsErrorModalVisible(false)}
+            onCancel={() => setIsErrorModalVisible(false)}
+          >
+            <p>{errorMessage}</p>
+          </Modal>
+          
       </div>
     </div>
   );
 };
 
-export default CreateBlog;
+export default UpdateBlog;
