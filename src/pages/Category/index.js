@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import axiosService from "../../services/configAxios";
-
+import { Link } from "react-router-dom";
 function ShowCategory() {
   const [categories, setCategory] = useState([]);
   const [openedMenuIndex, setOpenedMenuIndex] = useState(null);
@@ -58,10 +58,24 @@ function ShowCategory() {
                               index === openedMenuIndex ? "show" : ""
                             }`}
                           >
-                            <a className="dropdown-item" href="#!">
-                              <i className="fa-solid fa-trash"></i>
-                              Delete
-                            </a>
+                            <Link
+                              to={`/detail-category/${category.id}`}
+                              className="dropdown-item"
+                            >
+                              <i className="fa-solid fa-asterisk"></i> Detail
+                            </Link>
+                            <Link
+                              to={`/update-category/${category.id}`}
+                              className="dropdown-item"
+                            >
+                              <i className="fa-solid fa-pen"></i> Update
+                            </Link>
+                            <Link
+                              to={`/detail-category/${category.id}`}
+                              className="dropdown-item"
+                            >
+                              <i className="fa-solid fa-trash"></i> Delete
+                            </Link>
                           </div>
                         </div>
                       </td>
