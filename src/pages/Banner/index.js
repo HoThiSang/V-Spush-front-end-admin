@@ -29,13 +29,13 @@ const Banner = () => {
                 <div className="card">
                     <h5 className="card-header">Users</h5>
                     <div className="d-flex justify-content">
-                        {/* <Link
-                            to={'/create-blog'}
+                        <Link
+                            to={'/create-banner'}
                             className="btn btn-primary btn-create-new"
                             id=""
                         >
                             Create new
-                        </Link> */}
+                        </Link>
                     </div>
                     <div className="table-responsive text-nowrap">
                         <table className="table">
