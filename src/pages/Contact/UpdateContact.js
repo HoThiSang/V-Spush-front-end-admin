@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import "./style.css";
+import Contact from "../../components/Contact";
 
 function UpdateContact() {
   const { id } = useParams();
@@ -29,7 +30,10 @@ function UpdateContact() {
 
   const updateContact = async () => {
     try {
-      const res = await axiosService.post(`/admin-reply-contact/${id}`, contact);
+      const res = await axiosService.post(
+        `/admin-reply-contact/${id}`,
+        contact
+      );
       setContact(res.data);
       setSuccess("Successfully");
     } catch (error) {
@@ -44,81 +48,10 @@ function UpdateContact() {
         <div className="col-lg-2"></div>
         <div className="col-lg-8 form-update-contact">
           <form onSubmit={handleSubmit(updateContact)}>
-            <div className="row">
-              <div className="col-lg-2">
-                <h3 className="update-contact">Update Contact</h3>
-              </div>
-              <div className="col-lg-8">
-                <label htmlFor="name" className="object-contact">
-                  User name
-                </label>
-                <br />
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  value={contact.name}
-                  className="input-update-contact"
-                />
-              </div>
-              <div className="col-lg-2">
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-lg-2"></div>
-              <div className="col-lg-8">
-                <br />
-                <label htmlFor="email" className="object-contact">
-                  Email
-                </label>
-                <br />
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  value={contact.email}
-                  className="input-update-contact"
-                />
-              </div>
-              <div className="col-lg-2"></div>
-            </div>
-            <div className="row">
-              <div className="col-lg-2"></div>
-              <div className="col-lg-8">
-                <br />
-
-                <label htmlFor="subject" className="object-contact">
-                  Subject
-                </label>
-                <br />
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  value={contact.subject}
-                  className="input-update-contact"
-                />
-              </div>
-              <div className="col-lg-2"></div>
-            </div>
-            <div className="row">
-              <div className="col-lg-2"></div>
-              <div className="col-lg-8">
-                <br />
-                <label htmlFor="contact_status" className="object-contact">
-                  Contact status
-                </label>
-                <br />
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  value={contact.contact_status}
-                  className="input-update-contact"
-                />
-              </div>
-              <div className="col-lg-2"></div>
-            </div>
+            <Contact name="Name" value={contact.name} title="Update Contact" />
+            <Contact name="Email" value={contact.email} />
+            <Contact name="Subject" value={contact.subject} />
+            <Contact name="Contact Status" value={contact.contact_status} />
             <div className="row">
               <div className="col-lg-2"></div>
               <div className="col-lg-8">
@@ -146,12 +79,14 @@ function UpdateContact() {
               <div className="col-lg-2"></div>
             </div>
             <div className="row">
-              <div className="col-lg-2"><input
+              <div className="col-lg-2">
+                <input
                   htmlFor=""
                   className="success-contact"
                   value={success}
                   disabled
-                /></div>
+                />
+              </div>
               <div className="col-lg-8">
                 <br />
                 {errors.message && (

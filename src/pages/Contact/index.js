@@ -30,7 +30,7 @@ function ShowContact() {
             <div className="table-responsive text-nowrap">
               <table className="table">
                 <thead>
-                  <tr >
+                  <tr>
                     <th className="title-contact">Name</th>
                     <th className="title-contact">Email</th>
                     <th className="title-contact">Subject</th>
@@ -45,9 +45,7 @@ function ShowContact() {
                       <td>
                         <strong>{contact.name}</strong>
                       </td>
-                      <td>
-                        {contact.email}
-                      </td>
+                      <td>{contact.email}</td>
                       <td>{contact.subject}</td>
                       <td>{contact.message}</td>
                       <td>{contact.contact_status}</td>
@@ -68,11 +66,13 @@ function ShowContact() {
                               index === openedMenuIndex ? "show" : ""
                             }`}
                           >
-                           <Link to={`/update-contact/${contact.id}`} className="dropdown-item">
-                          <i className="fa-solid fa-pen"></i> Edit
-                          </Link>
+                            <Link
+                              to={`/update-contact/${contact.id}`}
+                              className="dropdown-item"
+                            >
+                              <i className="fa-solid fa-pen"></i> Edit
+                            </Link>
 
-                         
                             <a className="dropdown-item" href="#!">
                               <i className="fa-solid fa-trash"></i>
                               Delete
