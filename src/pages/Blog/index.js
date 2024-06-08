@@ -52,7 +52,7 @@ const Blog = () => {
     <div className="content-wrapper">
       <div className="container-xxl flex-grow-1 container-p-y">
         <div className="card">
-          <h5 className="card-header">Users</h5>
+          <h5 className="card-header">Blogs</h5>
           <div className="d-flex justify-content">
             <Link
             to={'/create-blog'}
