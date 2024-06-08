@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axiosService from "../../services/configAxios";
 import { Link } from "react-router-dom";
 
 function DetailCategory() {
   const [category, setCategory] = useState({});
   const { id } = useParams();
+  const navigate=useNavigate();
   const getDetailCategory = async () => {
     try {
       const response = await axiosService.get(`categories/${id}`);
-      setCategory(response.data);
+      setCategory(response.data.data);
     } catch (error) {
       console.log("Error get detail category", error);
     }
@@ -17,6 +18,8 @@ function DetailCategory() {
   useEffect(() => {
     getDetailCategory();
   }, []);
+
+
   return (
     <div className="container">
       <div className="row row-update-contact">
@@ -53,7 +56,7 @@ function DetailCategory() {
                 type="text"
                 name=""
                 id=""
-                value={category.name}
+                value={category.category_name}
                 className="input-update-contact"
               />
               <Link to="/categories">Turn Back</Link>

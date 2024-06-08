@@ -25,6 +25,13 @@ function ShowCategory() {
         <div className="container-xxl flex-grow-1 container-p-y">
           <div className="card">
             <h5 className="card-header">Category</h5>
+            <Link
+            to={'/create-category'}
+              className="btn btn-primary btn-create-new"
+              id=""
+            >
+              Create new
+            </Link>
             <div className="table-responsive text-nowrap">
               <table className="table">
                 <thead>
@@ -71,7 +78,7 @@ function ShowCategory() {
                               <i className="fa-solid fa-pen"></i> Update
                             </Link>
                             <Link
-                              to={`/detail-category/${category.id}`}
+                              to={`/delete-category/${category.id}`}
                               className="dropdown-item"
                             >
                               <i className="fa-solid fa-trash"></i> Delete
