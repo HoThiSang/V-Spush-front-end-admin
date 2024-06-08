@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import "./style.css";
 import Contact from "../../components/Contact";
+import AdminLayout from "../../layouts/AdminLayout";
 
 function UpdateContact() {
   const { id } = useParams();
@@ -43,6 +44,7 @@ function UpdateContact() {
   };
 
   return (
+    <AdminLayout>
     <div className="container">
       <div className="row row-update-contact">
         <div className="col-lg-2"></div>
@@ -106,6 +108,7 @@ function UpdateContact() {
         <div className="col-lg-2"></div>
       </div>
     </div>
+    </AdminLayout>
   );
 }
 
