@@ -12,3 +12,8 @@
   .error{
     color: red;
   }
+
+  .image-fluid{
+    max-width:300px;
+    /* max- */
+  }

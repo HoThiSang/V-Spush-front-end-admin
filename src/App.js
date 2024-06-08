@@ -5,6 +5,7 @@ import { Footer } from "./layouts/Footer";
 import { NavBar } from "./layouts/NavBar";
 import SideBar from "./layouts/Sidebar";
 import Banner from "./pages/Banner";
+import UpdateBlog from "./pages/Blog/UpdateBlog";
 
 function App() {
   return (
@@ -19,11 +20,11 @@ function App() {
                 <Route path="/orders" element={<Order />} />
                 <Route path="/blogs" element={<Blog />} />
                 <Route path="/create-blog" element={<CreateBlog />} />
-                {/* <Route path="/orders" element={<Order />} /> */}
                 <Route path="/contacts" element={<ShowContact />} />
                 <Route path="/banner" element={<Banner />} />
                 <Route path="/update-contact/:id" element={<UpdateContact />} />
 
+                <Route path="/update-blog/:id" element={<UpdateBlog />} />
               </Route>
             </Routes>
             <Footer />

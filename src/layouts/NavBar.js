@@ -15,12 +15,12 @@ export const NavBar =()=>{
             <ul className="navbar-nav flex-row align-items-center ms-auto">
               
                 <li className="nav-item lh-1 me-3">
-                    <a className="github-button" href="https://github.com/themeselection/sneat-html-admin-template-free" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
+                    <a className="github-button" href="#!" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
                 </li>
 
            
                 <li className="nav-item navbar-dropdown dropdown-user dropdown">
-                    <a className="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <a className="nav-link dropdown-toggle hide-arrow" href="#!" data-bs-toggle="dropdown">
                         <div className="avatar avatar-online">
                             <img src="https://down-vn.img.susercontent.com/file/cdf9af013aa652eb0596cb252b1101d4_tn" alt className="w-px-40 h-auto rounded-circle" />
                         </div>
