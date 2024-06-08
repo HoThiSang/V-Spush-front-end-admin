@@ -3,6 +3,7 @@ import { Flex, Input, Modal } from "antd";
 import axiosService from "../../services/configAxios";
 import "./style.css";
 import { useForm } from "react-hook-form";
+import AdminLayout from "../../layouts/AdminLayout";
 const { TextArea } = Input;
 
 const CreateBlog = () => {
@@ -68,6 +69,7 @@ const CreateBlog = () => {
   };
 
   return (
+    <AdminLayout>
     <div className="content-wrapper">
       <div className="container-xxl flex-grow-1 container-p-y">
         <h4 className="fw-bold py-3 mb-4">
@@ -140,6 +142,7 @@ const CreateBlog = () => {
         </Modal>
       </div>
     </div>
+    </AdminLayout>
   );
 };
 

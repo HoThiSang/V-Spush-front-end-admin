@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axiosService from "../../services/configAxios";
+import AdminLayout from "../../layouts/AdminLayout";
+import { Link } from "react-router-dom";
 function ShowContact() {
   const [contacts, setContact] = useState([]);
   const [openedMenuIndex, setOpenedMenuIndex] = useState(null);
@@ -22,7 +24,8 @@ function ShowContact() {
   }, []);
 
   return (
-    <>
+ 
+    <AdminLayout>
       <div className="content-wrapper">
         <div className="container-xxl flex-grow-1 container-p-y">
           <div className="card">
@@ -88,7 +91,7 @@ function ShowContact() {
           </div>
         </div>
       </div>
-    </>
+      </AdminLayout>
   );
 }
 

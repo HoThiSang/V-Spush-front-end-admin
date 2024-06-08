@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axiosService from "../../services/configAxios";
 import { useParams } from "react-router";
 import { Flex, Input, Modal } from "antd";
+import AdminLayout from "../../layouts/AdminLayout";
 const { TextArea } = Input;
 
 const UpdateBlog = () => {
@@ -84,6 +85,7 @@ const UpdateBlog = () => {
     }
   };
   return (
+    <AdminLayout>
     <div className="content-wrapper">
       <div className="container-xxl flex-grow-1 container-p-y">
         <h4 className="fw-bold py-3 mb-4">
@@ -149,6 +151,7 @@ const UpdateBlog = () => {
         </Modal>
       </div>
     </div>
+    </AdminLayout>
   );
 };
 
