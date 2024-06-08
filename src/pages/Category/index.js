@@ -1,6 +1,7 @@
 import { useEffect, useState} from "react";
 import axiosService from "../../services/configAxios";
 import { Link } from "react-router-dom";
+import AdminLayout from "../../layouts/AdminLayout";
 function ShowCategory() {
   const [categories, setCategory] = useState([]);
   const [openedMenuIndex, setOpenedMenuIndex] = useState(null);
@@ -21,6 +22,7 @@ function ShowCategory() {
   }, []);
   return (
     <>
+    <AdminLayout>
       <div className="content-wrapper">
         <div className="container-xxl flex-grow-1 container-p-y">
           <div className="card">
@@ -94,6 +96,7 @@ function ShowCategory() {
           </div>
         </div>
       </div>
+      </AdminLayout>
     </>
   );
 }
