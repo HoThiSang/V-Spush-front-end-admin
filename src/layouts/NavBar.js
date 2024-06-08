@@ -22,7 +22,7 @@ export const NavBar =()=>{
                 <li className="nav-item navbar-dropdown dropdown-user dropdown">
                     <a className="nav-link dropdown-toggle hide-arrow" href="#!" data-bs-toggle="dropdown">
                         <div className="avatar avatar-online">
-                            <img src="https://down-vn.img.susercontent.com/file/cdf9af013aa652eb0596cb252b1101d4_tn" alt className="w-px-40 h-auto rounded-circle" />
+                            <img src="https://down-vn.img.susercontent.com/file/cdf9af013aa652eb0596cb252b1101d4_tn" alt="" className="w-px-40 h-auto rounded-circle" />
                         </div>
                     </a>
                     <ul className="dropdown-menu dropdown-menu-end">
@@ -40,7 +40,7 @@ export const NavBar =()=>{
                         </li>
 
                         <li>
-                            <a className="dropdown-item" href="#!"></a>
+                            <a className="dropdown-item" href="#!" rel="noreferrer" ></a>
                             <form id="logout-form" action="#!" method="POST" class="d-none">
                             </form>
                         </li>

@@ -1,39 +1,22 @@
-import { Routes, Route } from "react-router";
-// import Home from "./pages/Home";
-import { Order, Blog , CreateBlog,ShowContact,UpdateContact} from "./pages";
-import { Footer } from "./layouts/Footer";
-import { NavBar } from "./layouts/NavBar";
-import SideBar from "./layouts/Sidebar";
-import Banner from "./pages/Banner";
-import UpdateBlog from "./pages/Blog/UpdateBlog";
+import {  Routes, Route, Navigate } from "react-router-dom";
+import { Order, Blog, CreateBlog, ShowContact, UpdateContact, UpdateBlog } from "./pages";
+import Login from "./pages/Login";
+import React from "react";
 
 function App() {
   return (
-    <>
-      <div className="layout-wrapper layout-content-navbar">
-        <div className="layout-container">
-          <SideBar />
-          <div className="layout-page">
-            <NavBar />
-            <Routes>
-              <Route>
-                <Route path="/orders" element={<Order />} />
-                <Route path="/blogs" element={<Blog />} />
-                <Route path="/create-blog" element={<CreateBlog />} />
-                <Route path="/contacts" element={<ShowContact />} />
-                <Route path="/banner" element={<Banner />} />
-                <Route path="/update-contact/:id" element={<UpdateContact />} />
+   
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/blogs" element={<Blog />} />
+        <Route path="/orders" element={<Order />} />
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/create-blog" element={<CreateBlog />} />
+        <Route path="/contacts" element={<ShowContact />} />
+        <Route path="/update-contact" element={<UpdateContact />} />
+        <Route path="/update-blog/:id" element={<UpdateBlog />} />
+      </Routes>
 
-                <Route path="/update-blog/:id" element={<UpdateBlog />} />
-              </Route>
-            </Routes>
-            <Footer />
-            <div className="content-backdrop fade"></div>
-          </div>
-        </div>
-      </div>
-      <div className="layout-overlay layout-menu-toggle"></div>
-    </>
   );
 }
 

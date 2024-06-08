@@ -3,6 +3,7 @@ import axiosService from "../../services/configAxios";
 import userEvent from "@testing-library/user-event";
 import TdTable from "../../components/TdTable";
 import { Link } from "react-router-dom";
+import AdminLayout from "../../layouts/AdminLayout";
 
 function Order() {
   const [orders, setOrders] = useState([]);
@@ -22,6 +23,7 @@ function Order() {
   }, [])
 
   return (
+    <AdminLayout>
     <div className="content-wrapper">
       <div className="container-xxl flex-grow-1 container-p-y">
         <div className="card">
@@ -66,6 +68,7 @@ function Order() {
         </div>
       </div>
     </div>
+    </AdminLayout>
   );
 }
 

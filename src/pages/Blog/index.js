@@ -4,7 +4,7 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import BlogItem from '../../components/BlogItem'
 import {Modal } from "antd";
-
+import AdminLayout from "../../layouts/AdminLayout";
 
 const Blog = () => {
   const [blogs, setBlog] = useState([]);
@@ -48,6 +48,7 @@ const Blog = () => {
     }
   }
   return (
+    <AdminLayout>
     <div className="content-wrapper">
       <div className="container-xxl flex-grow-1 container-p-y">
         <div className="card">
@@ -109,6 +110,7 @@ const Blog = () => {
           <p>{successMessage}</p>
         </Modal>
     </div>
+    </AdminLayout>
   );
 };
 
