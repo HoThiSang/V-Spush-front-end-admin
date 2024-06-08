@@ -27,7 +27,7 @@ export const SideBarData = [
 
     {
         title : 'Contact',
-        name : 'fa-solid fa-blog',
+        name : 'fa-solid  fa-envelope',
         link:'contacts'
     }
 ]
