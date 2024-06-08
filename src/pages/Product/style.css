@@ -1,0 +1,15 @@
+.image-product {
+  max-width: 250px;
+}
+
+.dropdown-menu {
+  display: none;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.btn-create-new {
+  margin-left: 10px;
+}

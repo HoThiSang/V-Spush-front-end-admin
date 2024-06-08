@@ -42,12 +42,11 @@ const BlogItem = (props) => {
             <Link className="dropdown-item" to={`/update-blog/${id}`}>
               <i className="fa-solid fa-pen"></i> Edit
             </Link>
-           
-              <button className="btn" onClick={()=>handleDeleteBlog(id)}>
+
+            <button className="btn" onClick={() => handleDeleteBlog(id)}>
               <i className="fa-solid fa-trash"></i>
               Delete
-              </button>
-          
+            </button>
           </div>
         </div>
       </td>
@@ -55,4 +54,4 @@ const BlogItem = (props) => {
   );
 };
 
-export default BlogItem
+export default BlogItem;
