@@ -80,7 +80,7 @@ const Product = () => {
                         >
                           <Link
                             className="dropdown-item"
-                            to={`/`}
+                            to={`/update-product/${product.id}`}
                           >
                             <i className="fa-solid fa-pen"></i> Edit
                           </Link>
