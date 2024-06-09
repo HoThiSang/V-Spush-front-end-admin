@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axiosService from "../../services/configAxios";
 import "./style.css";
 import { Link } from "react-router-dom";
+
 const Banner = () => {
-    const [banner, setBanner] = useState([]);
+    const [banners, setBanners] = useState([]); // Sửa tên state thành 'banners'
     const [openedMenuIndex, setOpenedMenuIndex] = useState(null);
 
     const toggleMenu = (index) => {
@@ -22,8 +23,7 @@ const Banner = () => {
     const getBannerData = async () => {
         try {
             const response = await axiosService.get("/admin-show-all-banner");
-            setBanner(response.data.data);
-            console.log(response.data.data);
+            setBanners(response.data.data);
         } catch (error) {
             alert("Something wrong ", error);
         }
@@ -32,6 +32,7 @@ const Banner = () => {
     useEffect(() => {
         getBannerData();
     }, []);
+
     return (
         <div className="content-wrapper">
             <div className="container-xxl flex-grow-1 container-p-y">
@@ -58,7 +59,7 @@ const Banner = () => {
                                 </tr>
                             </thead>
                             <tbody className="table-border-bottom-0">
-                                {banner.map((banner, index) => (
+                                {banners.map((banner, index) => (
                                     <tr key={banner.id}>
                                         <td>
                                             <strong>{banner.id}</strong>
@@ -87,13 +88,13 @@ const Banner = () => {
                                                     className={`dropdown-menu ${index === openedMenuIndex ? "show" : ""
                                                         }`}
                                                 >
-                                                    <a className="dropdown-item" href="#!">
+                                                    <Link className="dropdown-item" to={`/edit-banner/${banner.id}`}>
                                                         <i className="fa-solid fa-pen"></i> Edit
-                                                    </a>
-                                                    <a className="dropdown-item" href="#!">
+                                                    </Link>
+                                                    <button className="dropdown-item" onClick={() => deleteBanner(banner.id)}>
                                                         <i className="fa-solid fa-trash"></i>
                                                         Delete
-                                                    </a>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </td>
