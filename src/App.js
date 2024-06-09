@@ -1,26 +1,26 @@
-import "./App.css";
-import { Footer } from "./layouts/Footer";
-import { NavBar } from "./layouts/NavBar";
-import SideBar from "./layouts/Sidebar";
-import Home from "./pages/Home";
+import {  Routes, Route, Navigate } from "react-router-dom";
+import { Order, Blog, CreateBlog, ShowContact, UpdateContact, UpdateBlog , Product,ShowCategory} from "./pages";
+import Login from "./pages/Login";
+import React from "react";
+import Banner from "./pages/Banner";
 
 function App() {
   return (
-    <>
-    <div className="layout-wrapper layout-content-navbar">
-      <div className="layout-container">
-        <SideBar />
-        <div className="layout-page">
-        <NavBar />
-          {/* Content */}
+   
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/blogs" element={<Blog />} />
+        <Route path="/orders" element={<Order />} />
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/create-blog" element={<CreateBlog />} />
+        <Route path="/contacts" element={<ShowContact />} />
+        <Route path="/banner" element={<Banner />} />
+        <Route path="/update-contact/:id" element={<UpdateContact />} />
+        <Route path="/update-blog/:id" element={<UpdateBlog />} />
+        <Route path="/products" element={<Product />} />
+        <Route path="/categories" element={<ShowCategory />} />
+      </Routes>
 
-          <Footer />
-          <div className="content-backdrop fade"></div>
-        </div>
-      </div>
-    </div>
-    <div class="layout-overlay layout-menu-toggle"></div>
-    </>
   );
 }
 

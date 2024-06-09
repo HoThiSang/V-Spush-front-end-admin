@@ -1,0 +1,19 @@
+.dropdown-menu {
+    display: none;
+  }
+  
+  .dropdown-menu.show {
+    display: block;
+  }
+
+  .btn-create-new{
+    margin-left:10px;
+  }
+  .error{
+    color: red;
+  }
+
+  .image-fluid{
+    max-width:300px;
+    /* max- */
+  }
