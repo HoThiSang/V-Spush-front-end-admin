@@ -10,6 +10,15 @@ const Banner = () => {
         setOpenedMenuIndex(index === openedMenuIndex ? null : index);
     };
 
+    const deleteBanner = async (id) => {
+        try {
+            await axiosService.delete(`/admin-delete-banner/${id}`);
+            setBanners(banners.filter(banner => banner.id !== id));
+        } catch (error) {
+            alert("Failed to delete banner: ", error);
+        }
+    };
+
     const getBannerData = async () => {
         try {
             const response = await axiosService.get("/admin-show-all-banner");
