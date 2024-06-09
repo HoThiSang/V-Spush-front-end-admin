@@ -1,6 +1,6 @@
 
 function Contact(props) {
-  const { title,name, value } = props;
+  const { title,name, value, onChange } = props;
   return (
     <div className="row">
     <div className="col-lg-2">
@@ -14,9 +14,10 @@ function Contact(props) {
         <input
           type="text"
           name=""
-          id=""
+           id="message"
           value={value}
           className="input-update-contact"
+          onChange={props.onChange}
         />
       </div>
       <div className="col-lg-2"></div>

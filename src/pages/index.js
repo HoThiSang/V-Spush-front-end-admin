@@ -7,4 +7,5 @@ export {default as UpdateContact} from './Contact/UpdateContact'
 export {default as UpdateBlog } from './Blog/UpdateBlog'
 export {default as Product } from './Product/index'
 export {default as ShowCategory} from './Category/index'
+export {default as CreateCategory} from './Category/CreateCategory'
 
