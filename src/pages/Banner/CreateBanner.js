@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axiosService from "../../services/configAxios";
 import { useNavigate } from "react-router-dom";
 import { Flex, Input, Button, Modal } from "antd";
-import './style.css'
+import './style.css';
+
 const { TextArea } = Input;
 
 const CreateBanner = () => {
@@ -13,24 +14,64 @@ const CreateBanner = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
     const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
+    const [titleError, setTitleError] = useState('');
+    const [subTitleError, setSubTitleError] = useState('');
+    const [contentError, setContentError] = useState('');
+    const [imageError, setImageError] = useState('');
     const navigate = useNavigate();
 
     const handleChangeTitle = (e) => {
         setTitle(e.target.value);
+        setTitleError('');
     };
+
     const handleChangeSubTitle = (e) => {
         setSubTitle(e.target.value);
+        setSubTitleError('');
     };
+
     const handleChangeContent = (e) => {
         setContent(e.target.value);
+        setContentError('');
     };
+
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         setImageFile(file);
+        setImageError('');
+    };
+
+    const validateForm = () => {
+        let isValid = true;
+        if (!title) {
+            setTitleError('Title is required.');
+            isValid = false;
+        }
+        if (!sub_title) {
+            setSubTitleError('Sub title is required.');
+            isValid = false;
+        }
+        if (!content) {
+            setContentError('Content is required.');
+            isValid = false;
+        }
+        if (!imageFile) {
+            setImageError('Image is required.');
+            isValid = false;
+        } else if (imageFile && !imageFile.type.startsWith('image/')) {
+            setImageError('Only image files are allowed.');
+            isValid = false;
+        }
+        return isValid;
     };
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
+
+        if (!validateForm()) {
+            return;
+        }
+
         const formData = new FormData();
         formData.append('title', title);
         formData.append('sub_title', sub_title);
@@ -53,13 +94,13 @@ const CreateBanner = () => {
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message) {
                 setErrorMessage(error.response.data.message);
-                setIsErrorModalVisible(true);
             } else {
                 setErrorMessage('An error occurred. Please try again later.');
-                setIsErrorModalVisible(true);
             }
+            setIsErrorModalVisible(true);
         }
     };
+
     useEffect(() => {
         if (isSuccessModalVisible) {
             navigate("/banner");
@@ -82,37 +123,49 @@ const CreateBanner = () => {
                                 </div>
                                 <div className="card-body">
                                     <Flex vertical gap={32}>
-                                        <TextArea
-                                            showCount
-                                            maxLength={100}
-                                            placeholder="Enter banner title"
-                                            onChange={handleChangeTitle}
-                                            value={title}
-                                        />
-                                        <TextArea
-                                            showCount
-                                            maxLength={500}
-                                            placeholder="Enter banner content"
-                                            style={{ height: 120, resize: "none" }}
-                                            onChange={handleChangeContent}
-                                            value={content}
-                                        />
-                                        <TextArea
-                                            showCount
-                                            maxLength={500}
-                                            placeholder="Enter banner sub title"
-                                            style={{ height: 120, resize: "none" }}
-                                            onChange={handleChangeSubTitle}
-                                            value={sub_title}
-                                        />
-                                        <input
-                                            type="file"
-                                            onChange={handleImageUpload}
-
-                                        />
-                                        <button className="btn btn-outline-primary" type="submit">
+                                        <div>
+                                            <TextArea
+                                                showCount
+                                                maxLength={100}
+                                                placeholder="Enter banner title"
+                                                onChange={handleChangeTitle}
+                                                value={title}
+                                            />
+                                            {titleError && <div className="error-message">{titleError}</div>}
+                                        </div>
+                                        <div>
+                                            <TextArea
+                                                showCount
+                                                maxLength={500}
+                                                placeholder="Enter banner content"
+                                                style={{ height: 120, resize: "none" }}
+                                                onChange={handleChangeContent}
+                                                value={content}
+                                            />
+                                            {contentError && <div className="error-message">{contentError}</div>}
+                                        </div>
+                                        <div>
+                                            <TextArea
+                                                showCount
+                                                maxLength={500}
+                                                placeholder="Enter banner sub title"
+                                                style={{ height: 120, resize: "none" }}
+                                                onChange={handleChangeSubTitle}
+                                                value={sub_title}
+                                            />
+                                            {subTitleError && <div className="error-message">{subTitleError}</div>}
+                                        </div>
+                                        <div>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={handleImageUpload}
+                                            />
+                                            {imageError && <div className="error-message">{imageError}</div>}
+                                        </div>
+                                        <Button type="primary" htmlType="submit">
                                             Submit
-                                        </button>
+                                        </Button>
                                     </Flex>
                                 </div>
                             </div>
