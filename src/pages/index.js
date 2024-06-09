@@ -10,4 +10,5 @@ export {default as Product } from './Product/index'
 export {default as ShowCategory} from './Category/index'
 export {default as DetailCategory} from './Category/DetailCategory'
 export {default as DeleteCategory} from './Category/DeleteCategory'
+export {default as CreateCategory} from './Category/CreateCategory'
 
