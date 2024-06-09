@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axiosService from "../../services/configAxios";
-import userEvent from "@testing-library/user-event";
 import TdTable from "../../components/TdTable";
 import { Link } from "react-router-dom";
 import AdminLayout from "../../layouts/AdminLayout";
