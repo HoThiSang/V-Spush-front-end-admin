@@ -13,6 +13,7 @@ const UpdateProduct = () => {
   const [brand, setBrand] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
+  const [discount, setDiscount] = useState(0);
   const [categoryName, setCategoryName] = useState(0);
   const [ingredient, setIngredient] = useState("");
   const [description, setDescription] = useState("");
@@ -35,6 +36,7 @@ const UpdateProduct = () => {
       setIngredient(response.data.productData.ingredient);
       setDescription(response.data.productData.description);
       setPrice(response.data.productData.price);
+      setDiscount(response.data.productData.price.discount)
     } catch (error) {
       alert("Something wrong when get data");
     }
@@ -44,38 +46,63 @@ const UpdateProduct = () => {
     getproductData(id);
   }, [id]);
 
+
   const handleImageUpload = (e) => {
     try {
       setLoading(true);
+  
+      if (e.target.files.length === 0) {
+        setImage([]);
+        return;
+      }
+  
       const tempArr = [];
-
+  
+      // Loop through the selected files
       for (const file of e.target.files) {
         console.log("file >>> ", file);
-
         tempArr.push({
           data: file,
           url: URL.createObjectURL(file)
         });
       }
-
-      setPictures(tempArr);
+  
+      // Replace the 'image' state with the first 3 images
+      const updatedImage = tempArr.slice(0, 3);
+      setImage(updatedImage);
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
   };
+ 
   const handleSubmitForm = async(e) => {
     e.preventDefault();
-    console.log("product name : ", producName);
-    console.log("product price : ", price);
-    console.log("product category : ", categoryName);
-    console.log("product brand : ", brand);
-    console.log("product category id : ", categoryId);
-    console.log("product image : ", pictures);
+    console.log("Image ", image)
     const formData = new FormData();
+       image.forEach((item) => {
+        console.log("Image ", item)
+    });
     formData.append("product_name", producName);
-    const response =  await axiosService.post(`/admin-product-update/${id}`, )
+    formData.append("quantity", quantity)
+    formData.append("price", price)
+    formData.append("ingredient", ingredient)
+    formData.append("description", description)
+    formData.append("brand", brand)
+    formData.append("discount", discount)
+    formData.append("category_id", categoryId)
+
+    try {
+      const response =  await axiosService.post(`/admin-product-update/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      } )
+      alert("Update product successfully !")
+    } catch (error) {
+      alert("Update product wrong !")
+    }
   };
   return (
     <AdminLayout>
@@ -116,6 +143,14 @@ const UpdateProduct = () => {
                       name="quantity"
                       value={quantity}
                       onchange={(e) => setQuantity(e.target.value)}
+                    />
+                    <ProductInput
+                      label="Discount"
+                      icon="fa-solid fa-q"
+                      type="number"
+                      name="discount"
+                      value={discount}
+                      onchange={(e) => setDiscount(e.target.value)}
                     />
                     <ProductInput
                       label="Price"
@@ -213,17 +248,7 @@ const UpdateProduct = () => {
             </div>
           </form>
         </div>
-        <div className="row">
-          {pictures.map((picture, index) => (
-            <div className="col-md-3 mb-4" key={index}>
-              <img
-                src={picture.url}
-                alt={`Uploaded  ${index + 1}`}
-                className="img-fluid"
-              />
-            </div>
-          ))}
-        </div>
+        
       </div>
     </AdminLayout>
   );
