@@ -50,7 +50,7 @@ function CreateCategory() {
                         required: "Message is required",
                         validate: (value) =>
                           value.length > 10 ||
-                          "Message must be longer than 10 characters",
+                          "Message must be longer than 6 characters",
                       })}
                       type="text"
                       id="message"
@@ -58,14 +58,14 @@ function CreateCategory() {
                       onChange={getName}
                       className="input-update-contact"
                     />
+                {errors.message && (
+                  <p className="error-input">{errors.message.message}</p>
+                )}
                   </div>
 
                   <div className="col-lg-2"></div>
                 </div>
-                <br />
-                {errors.message && (
-                  <p className="error-input">{errors.message.message}</p>
-                )}
+                <br/>
                 <br />
                 <Link to="/categories" className="btn btn-primary btn-create-new btn-detail-category">Turn Back</Link>
 

@@ -100,9 +100,11 @@ function UpdateContact() {
                 >
                   Update
                 </button>
+                <br />
               </div>
               <div className="col-lg-2"></div>
             </div>
+            <br />
           </form>
         </div>
         <div className="col-lg-2"></div>
