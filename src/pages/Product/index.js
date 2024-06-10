@@ -69,7 +69,7 @@ const Product = () => {
           <div className="card">
             <h5 className="card-header">Products</h5>
             <div className="d-flex justify-content">
-              <Link to={"/create-product"} className="btn btn-primary btn-create-new">
+              <Link to={"/#"} className="btn btn-primary btn-create-new">
                 Create new
               </Link>
             </div>
