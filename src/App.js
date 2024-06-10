@@ -1,5 +1,5 @@
 import {  Routes, Route, Navigate } from "react-router-dom";
-import { Order, Blog, CreateBlog, ShowContact, UpdateContact, UpdateBlog , Product,ShowCategory} from "./pages";
+import { Order, Blog, CreateBlog, ShowContact, UpdateContact, UpdateBlog , Product,ShowCategory,DetailCategory,DeleteCategory} from "./pages";
 import Login from "./pages/Login";
 import React from "react";
 import Banner from "./pages/Banner";
@@ -19,6 +19,8 @@ function App() {
         <Route path="/update-blog/:id" element={<UpdateBlog />} />
         <Route path="/products" element={<Product />} />
         <Route path="/categories" element={<ShowCategory />} />
+        <Route path="/detail-category/:id" element={<DetailCategory />} />
+        <Route path="/delete-category/:id" element={<DeleteCategory />} />
       </Routes>
 
   );
