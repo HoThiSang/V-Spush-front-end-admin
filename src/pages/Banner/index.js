@@ -89,7 +89,7 @@ const Banner = () => {
                                                     className={`dropdown-menu ${index === openedMenuIndex ? "show" : ""
                                                         }`}
                                                 >
-                                                    <Link className="dropdown-item" to={`/edit-banner/${banner.id}`}>
+                                                    <Link className="dropdown-item" to={`/update-banner/${banner.id}`}>
                                                         <i className="fa-solid fa-pen"></i> Edit
                                                     </Link>
                                                     <button className="dropdown-item" onClick={() => deleteBanner(banner.id)}>
