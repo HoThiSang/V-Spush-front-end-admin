@@ -1,6 +1,6 @@
 import {  Routes, Route, Navigate } from "react-router-dom";
 import { Order, Blog, CreateBlog, ShowContact, UpdateContact, UpdateBlog, Product, ShowCategory, DetailCategory, DeleteCategory, CreateBanner,CreateCategory,UpdateCategory, UpdateProduct} from "./pages";
-import Login from "./pages/Login";
+import Login from "./pages/Login/Login";
 import React from "react";
 import Banner from "./pages/Banner";
 import CreateProduct from "./pages/Product/CreateProduct";
