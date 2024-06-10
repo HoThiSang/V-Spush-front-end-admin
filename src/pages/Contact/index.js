@@ -29,7 +29,7 @@ function ShowContact() {
       <div className="content-wrapper">
         <div className="container-xxl flex-grow-1 container-p-y">
           <div className="card">
-            <h5 className="card-header title-contact">Contacts</h5>
+            <h5 className="card-header title-contact">Contact</h5>
             <div className="table-responsive text-nowrap">
               <table className="table">
                 <thead>

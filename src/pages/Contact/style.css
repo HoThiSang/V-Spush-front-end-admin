@@ -1,25 +1,9 @@
 .row-update-contact {
   margin-top: 40px;
 }
-.title-contact {
-  margin-top: 30px;
-  color: white;
-  background-color: blue;
-  width: 12%;
-  border-radius: 10px 10px 10px 10px;
-}
-
 .update-contact {
-  color: white;
-  background-color: blue;
-  border-radius: 5px 5px 5px 5px;
-  font-size: 20px;
   text-align: center;
 }
-.table th.title-contact {
-  color: black;
-}
-
 .object-contact {
   color: black;
   font-size: 20px;

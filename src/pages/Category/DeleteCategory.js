@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Contact from "../../components/Contact";
 import AdminLayout from "../../layouts/AdminLayout";
+import "./style.css"
 const DeleteCategory = () => {
   const [category, setCategory] = useState({});
   const { id } = useParams();
@@ -38,8 +39,9 @@ const DeleteCategory = () => {
             <div className="col-lg-8 form-update-contact">
               <Contact title="Delete Category" name="ID" value={category.id} />
               <Contact name="Category Name" value={category.category_name} />
-              <Link to="/categories">Turn Back</Link>
-              <button onClick={deleteCategory}>Delete</button>
+              <br />
+              <Link to="/categories" className="btn btn-primary btn-create-new btn-detail-category">Turn Back</Link>
+              <button onClick={deleteCategory} className="btn btn-primary btn-create-new">Delete</button>
             </div>
             <div className="col-lg-2"></div>
           </div>

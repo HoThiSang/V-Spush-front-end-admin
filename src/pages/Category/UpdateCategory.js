@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router"
 import axiosService from "../../services/configAxios";
 import AdminLayout from "../../layouts/AdminLayout";
 import { useForm } from "react-hook-form";
+import "./style.css";
+import { Link } from "react-router-dom";
 
 function UpdateCategory(){
     const [category,setCategory]=useState({});
@@ -46,9 +48,10 @@ function UpdateCategory(){
           <form onSubmit={handleSubmit(updateCategory)}>
             <div className="row">
               <div className="col-lg-2">
-              <h3 className="update-contact">Update Category</h3>
+              
               </div>
               <div className="col-lg-8">
+              <h3 className="update-contact">Update Category</h3>
                 <br />
                 <label htmlFor="message" className="object-contact">
                  Category Name
@@ -76,9 +79,11 @@ function UpdateCategory(){
                 {errors.message && (
                   <p className="error-input">{errors.message.message}</p>
                 )}
+                <br/>
+                <Link to="/categories" className="btn btn-primary btn-create-new btn-detail-category">Turn Back</Link>
                 <button
                   type="submit"
-                  className="btn btn-outline-primary input-update-contact"
+                  className="btn btn-primary btn-create-new"
                 >
                   Update
                 </button>
