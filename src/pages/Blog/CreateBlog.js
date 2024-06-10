@@ -5,7 +5,6 @@ import "./style.css";
 import { useForm } from "react-hook-form";
 import AdminLayout from "../../layouts/AdminLayout";
 const { TextArea } = Input;
-
 const CreateBlog = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
