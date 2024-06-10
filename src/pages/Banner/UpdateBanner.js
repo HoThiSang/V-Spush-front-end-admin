@@ -54,7 +54,6 @@ const UpdateBanner = () => {
             setImageFile(e.target.files[0]);
         }
     };
-
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
