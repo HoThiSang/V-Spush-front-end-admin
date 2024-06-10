@@ -22,9 +22,9 @@ const CreateProduct = () => {
   const [categoryOptions, setCategoryOptions] = useState([]);
   const [imageFiles, setImageFiles] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-  const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
-  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
+  // const [successMessage, setSuccessMessage] = useState("");
+  // const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
+  // const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
   const [images, setImages] = useState([]);
   const [productNameError, setProductNameError] = useState("");
   const [descriptionError, setDescriptionError] = useState("");
@@ -153,8 +153,8 @@ const CreateProduct = () => {
       setCategoryId("");
       setImageFiles([]);
       setImages([]);
-      setSuccessMessage("Product created successfully!");
-      setIsSuccessModalVisible(true);
+      // setSuccessMessage("Product created successfully!");
+      // setIsSuccessModalVisible(true);
     } catch (error) {
       if (
         error.response &&
@@ -165,7 +165,7 @@ const CreateProduct = () => {
       } else {
         setErrorMessage("An error occurred. Please try again later.");
       }
-      setIsErrorModalVisible(true);
+      // setIsErrorModalVisible(true);
     }
   };
 
@@ -216,7 +216,7 @@ const CreateProduct = () => {
                         value={discount}
                       />
                       {discountError && (
-                        <div className="error-message">{discountError}</div>
+                        <span className="error-message">{discountError}</span>
                       )}
                       <Input
                         placeholder="Enter product quantity"
@@ -224,7 +224,7 @@ const CreateProduct = () => {
                         value={quantity}
                       />
                       {quantityError && (
-                        <div className="error-message">{quantityError}</div>
+                        <span className="error-message">{quantityError}</span>
                       )}
                       <TextArea
                         placeholder="Enter product ingredients"
@@ -233,7 +233,7 @@ const CreateProduct = () => {
                         value={ingredients}
                       />
                       {ingredientsError && (
-                        <div className="error-message">{ingredientsError}</div>
+                        <span className="error-message">{ingredientsError}</span>
                       )}
                       <Input
                         placeholder="Enter product brand"
@@ -241,7 +241,7 @@ const CreateProduct = () => {
                         value={branch}
                       />
                       {branchError && (
-                        <div className="error-message">{branchError}</div>
+                        <span className="error-message">{branchError}</span>
                       )}
                       <Select
                         placeholder="Select category"

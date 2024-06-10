@@ -13,3 +13,4 @@ export {default as DeleteCategory} from './Category/DeleteCategory'
 export {default as CreateCategory} from './Category/CreateCategory'
 export {default as UpdateCategory } from './Category/UpdateCategory'
 
+export {default as UpdateProduct } from './Product/UpdateProduct'
