@@ -3,6 +3,7 @@ import { Order, Blog, CreateBlog, ShowContact, UpdateContact, UpdateBlog, Produc
 import Login from "./pages/Login";
 import React from "react";
 import Banner from "./pages/Banner";
+import CreateProduct from "./pages/Product/CreateProduct";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
         <Route path="/delete-category/:id" element={<DeleteCategory />} />
         <Route path="/create-category" element={<CreateCategory />} />
         <Route path="/update-category/:id" element={<UpdateCategory />} />
-
+        <Route path="/create-product" element={<CreateProduct />} />
  </Routes>
 
   );
