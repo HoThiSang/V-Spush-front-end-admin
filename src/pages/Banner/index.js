@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axiosService from "../../services/configAxios";
 import "./style.css";
 import { Link } from "react-router-dom";
-
+import AdminLayout from "../../layouts/AdminLayout";
 const Banner = () => {
-    const [banners, setBanners] = useState([]); // Sửa tên state thành 'banners'
+    const [banners, setBanners] = useState([]);
     const [openedMenuIndex, setOpenedMenuIndex] = useState(null);
 
     const toggleMenu = (index) => {
@@ -34,6 +34,7 @@ const Banner = () => {
     }, []);
 
     return (
+        <AdminLayout>
         <div className="content-wrapper">
             <div className="container-xxl flex-grow-1 container-p-y">
                 <div className="card">
@@ -105,7 +106,8 @@ const Banner = () => {
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
+        </AdminLayout>
     );
 };
 
