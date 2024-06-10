@@ -10,7 +10,7 @@ const ProductInput = (props) => {
           <i className={icon}></i>
         </span>
         <input
-          // type={type}
+      
           className="form-control"
           value={value}
           onChange={onChange}
