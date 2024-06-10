@@ -1,11 +1,10 @@
-
 function Contact(props) {
-  const { title,name, value } = props;
+  const { title, name, value } = props;
   return (
     <div className="row">
-    <div className="col-lg-2">
-                <h3 className="update-contact">{title}</h3>
-              </div>
+      <div className="col-lg-2">
+        <h3 className="update-contact">{title}</h3>
+      </div>
       <div className="col-lg-8">
         <label htmlFor="name" className="object-contact">
           {name}
@@ -14,7 +13,7 @@ function Contact(props) {
         <input
           type="text"
           name=""
-          id=""
+          id="message"
           value={value}
           className="input-update-contact"
         />
