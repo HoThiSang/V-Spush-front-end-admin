@@ -51,6 +51,7 @@ const Product = () => {
       alert("Failed to delete the product!");
     }
   };
+  console.log(products)
 
   const handleChange = (value) => {
     setPage({

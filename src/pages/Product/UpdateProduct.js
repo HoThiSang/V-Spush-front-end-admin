@@ -13,7 +13,7 @@ const UpdateProduct = () => {
   const [brand, setBrand] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
-  const [discount, setDiscount] = useState(0);
+  const [discount, setDiscount] = useState("");
   const [categoryName, setCategoryName] = useState(0);
   const [ingredient, setIngredient] = useState("");
   const [description, setDescription] = useState("");
@@ -36,7 +36,7 @@ const UpdateProduct = () => {
       setIngredient(response.data.productData.ingredient);
       setDescription(response.data.productData.description);
       setPrice(response.data.productData.price);
-      setDiscount(response.data.productData.price.discount)
+      setDiscount(response.data.productData.discount);
     } catch (error) {
       alert("Something wrong when get data");
     }
@@ -46,62 +46,83 @@ const UpdateProduct = () => {
     getproductData(id);
   }, [id]);
 
-
   const handleImageUpload = (e) => {
     try {
-      setLoading(true);
-  
-      if (e.target.files.length === 0) {
-        setImage([]);
-        return;
+      setPictures([...pictures, ...e.target.files]);
+      let data = [];
+      for (let i = 0; i < pictures.length; i++) {
+        data.append(i);
       }
-  
-      const tempArr = [];
-  
-      // Loop through the selected files
-      for (const file of e.target.files) {
-        console.log("file >>> ", file);
-        tempArr.push({
-          data: file,
-          url: URL.createObjectURL(file)
-        });
-      }
-  
-      // Replace the 'image' state with the first 3 images
-      const updatedImage = tempArr.slice(0, 3);
-      setImage(updatedImage);
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
   };
- 
-  const handleSubmitForm = async(e) => {
+
+  // debugger;
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
-    console.log("Image ", image)
+    console.log("Image ", image);
+    console.log("Pric ", pictures);
+
     const formData = new FormData();
-       image.forEach((item) => {
-        console.log("Image ", item)
-    });
+
+    formData.append("discount", discount);
+
+    if (!ingredient) {
+      alert("The ingredient field is required.");
+      return;
+    }
+    formData.append("ingredient", ingredient);
+
+    // Kiểm tra các file ảnh
+    for (let i = 0; i < pictures.length; i++) {
+      if (
+        ![
+          "image/jpeg",
+          "image/png",
+          "image/jpg",
+          "image/gif",
+          "image/webp"
+        ].includes(pictures[i].type)
+      ) {
+        alert(
+          `The image_url.${i} field must be a file of type: jpeg, png, jpg, gif, webp.`
+        );
+        return;
+      }
+      formData.append(`image_url[${i}]`, pictures[i]);
+    }
+
     formData.append("product_name", producName);
-    formData.append("quantity", quantity)
-    formData.append("price", price)
-    formData.append("ingredient", ingredient)
-    formData.append("description", description)
-    formData.append("brand", brand)
-    formData.append("discount", discount)
-    formData.append("category_id", categoryId)
+    formData.append("quantity", quantity);
+    formData.append("price", price);
+    formData.append("description", description);
+    formData.append("brand", brand);
+    formData.append("category_id", categoryId);
+    formData.append("ingredient", ingredient);
 
     try {
-      const response =  await axiosService.post(`/admin-product-update/${id}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
+      const response = await axiosService.post(
+        `/admin-product-update/${id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
         }
-      } )
-      alert("Update product successfully !")
+      );
+      alert("Update product successfully!");
     } catch (error) {
-      alert("Update product wrong !")
+      if (error.response && error.response.data && error.response.data.errors) {
+        const errors = error.response.data.errors;
+        for (const key in errors) {
+          alert(`${key}: ${errors[key][0]}`);
+        }
+      } else {
+        alert("Update product wrong!");
+      }
     }
   };
   return (
@@ -126,55 +147,55 @@ const UpdateProduct = () => {
                       type="text"
                       name="product_name"
                       value={producName}
-                      onchange={(e) => setProductName(e.target.value)}
+                      onChange={(e) => setProductName(e.target.value)}
                     />
                     <ProductInput
                       label="Brand"
                       icon="fa-solid fa-copyright"
-                      type="text"
+                      // type="text"
                       name="brand"
-                      onchange={(e) => setBrand(e.target.value)}
+                      onChange={(e) => setBrand(e.target.value)}
                       value={brand}
                     />
                     <ProductInput
                       label="Quantity"
                       icon="fa-solid fa-q"
-                      type="number"
+                      // type="number"
                       name="quantity"
                       value={quantity}
-                      onchange={(e) => setQuantity(e.target.value)}
+                      onChange={(e) => setQuantity(e.target.value)}
                     />
                     <ProductInput
                       label="Discount"
                       icon="fa-solid fa-q"
-                      type="number"
+                      // type="text"
                       name="discount"
                       value={discount}
-                      onchange={(e) => setDiscount(e.target.value)}
+                      onChange={(e) => setDiscount(e.target.value)}
                     />
                     <ProductInput
                       label="Price"
                       icon="fa-solid fa-barcode"
-                      type="text"
+                      // type="text"
                       name="price"
                       value={price}
-                      onchange={(e) => setPrice(e.target.value)}
+                      onChange={(e) => setPrice(e.target.value)}
                     />
                     <ProductInput
                       label="Category"
-                      icon=""
-                      type="text"
-                      name=""
+                      icon="fa-solid fa-list"
+                      // type="text"
+                      name="category"
                       value={categoryName}
+                      onChange={(e) => setCategories(e.target.value)}
                     />
                     <TextArea
-                      type="text"
                       showCount
                       maxLength={1000}
                       placeholder="Ingredient for your product"
                       style={{ height: 120, resize: "none" }}
                       value={ingredient}
-                      onchange={(e) => setIngredient(e.target.value)}
+                      onChange={(e) => setIngredient(e.target.value)}
                     />
                   </div>
                 </div>
@@ -224,6 +245,7 @@ const UpdateProduct = () => {
                       placeholder="Description for your product"
                       style={{ height: 200, resize: "none" }}
                       value={description}
+                      onChange={(e) => setDescription(e.target.value)}
                     />
                     <p></p>
                     <div className="mb-3 mt-6">
@@ -248,7 +270,6 @@ const UpdateProduct = () => {
             </div>
           </form>
         </div>
-        
       </div>
     </AdminLayout>
   );

@@ -1,5 +1,5 @@
 const ProductInput = (props) => {
-  const { label, icon, type, name, value } = props;
+  const { label, icon,  name, value , onChange} = props;
   return (
     <div className="mb-3">
       <label className="form-label" for={name}>
@@ -10,16 +10,14 @@ const ProductInput = (props) => {
           <i className={icon}></i>
         </span>
         <input
-          type={type}
+          // type={type}
           className="form-control"
           value={value}
-     
+          onChange={onChange}
           aria-describedby="basic-icon-default-fullname2"
         />
       </div>
-      {/* @error('product_name')
-      <span style="color: red;">{{ $message }}</span>
-      @enderror */}
+     
     </div>
   );
 };
