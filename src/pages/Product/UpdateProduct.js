@@ -152,7 +152,6 @@ const UpdateProduct = () => {
                     <ProductInput
                       label="Brand"
                       icon="fa-solid fa-copyright"
-                      // type="text"
                       name="brand"
                       onChange={(e) => setBrand(e.target.value)}
                       value={brand}
@@ -160,7 +159,6 @@ const UpdateProduct = () => {
                     <ProductInput
                       label="Quantity"
                       icon="fa-solid fa-q"
-                      // type="number"
                       name="quantity"
                       value={quantity}
                       onChange={(e) => setQuantity(e.target.value)}
@@ -168,7 +166,6 @@ const UpdateProduct = () => {
                     <ProductInput
                       label="Discount"
                       icon="fa-solid fa-q"
-                      // type="text"
                       name="discount"
                       value={discount}
                       onChange={(e) => setDiscount(e.target.value)}
@@ -176,7 +173,6 @@ const UpdateProduct = () => {
                     <ProductInput
                       label="Price"
                       icon="fa-solid fa-barcode"
-                      // type="text"
                       name="price"
                       value={price}
                       onChange={(e) => setPrice(e.target.value)}
@@ -184,7 +180,6 @@ const UpdateProduct = () => {
                     <ProductInput
                       label="Category"
                       icon="fa-solid fa-list"
-                      // type="text"
                       name="category"
                       value={categoryName}
                       onChange={(e) => setCategories(e.target.value)}
