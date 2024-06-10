@@ -3,7 +3,7 @@ import axiosService from "../../services/configAxios";
 import { useNavigate } from "react-router-dom";
 import { Flex, Input, Button, Modal } from "antd";
 import './style.css';
-
+import AdminLayout from "../../layouts/AdminLayout";
 const { TextArea } = Input;
 
 const CreateBanner = () => {
@@ -108,6 +108,7 @@ const CreateBanner = () => {
     }, [isSuccessModalVisible, navigate]);
 
     return (
+        <AdminLayout>
         <div className="content-wrapper">
             <div className="container-xxl flex-grow-1 container-p-y">
                 <h4 className="fw-bold py-3 mb-4">
@@ -188,7 +189,8 @@ const CreateBanner = () => {
                 >
                 </Modal>
             </div>
-        </div>
+            </div>
+        </AdminLayout>
     );
 };
 
