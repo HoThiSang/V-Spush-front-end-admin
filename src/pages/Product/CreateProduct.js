@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Flex, Input, Select } from "antd";
+import { Flex, Input, Select, Modal } from "antd";
 import axiosService from "../../services/configAxios";
 import "./style.css";
 import { useForm } from "react-hook-form";
@@ -22,9 +22,9 @@ const CreateProduct = () => {
   const [categoryOptions, setCategoryOptions] = useState([]);
   const [imageFiles, setImageFiles] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-  // const [successMessage, setSuccessMessage] = useState("");
-  // const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
-  // const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
+  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
   const [images, setImages] = useState([]);
   const [productNameError, setProductNameError] = useState("");
   const [descriptionError, setDescriptionError] = useState("");
@@ -142,7 +142,6 @@ const CreateProduct = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      navigate("/products");
       setProductName("");
       setDescription("");
       setPrice("");
@@ -153,8 +152,8 @@ const CreateProduct = () => {
       setCategoryId("");
       setImageFiles([]);
       setImages([]);
-      // setSuccessMessage("Product created successfully!");
-      // setIsSuccessModalVisible(true);
+      setSuccessMessage("Product created successfully!");
+      setIsSuccessModalVisible(true);
     } catch (error) {
       if (
         error.response &&
@@ -165,10 +164,9 @@ const CreateProduct = () => {
       } else {
         setErrorMessage("An error occurred. Please try again later.");
       }
-      // setIsErrorModalVisible(true);
+      setIsErrorModalVisible(true);
     }
   };
-
   return (
     <AdminLayout>
       <div className="content-wrapper">
@@ -287,7 +285,27 @@ const CreateProduct = () => {
           </form>
         </div>
       </div>
+      <Modal
+        title="Success"
+        visible={isSuccessModalVisible}
+        onOk={() => {
+          setIsSuccessModalVisible(false);
+          navigate("/products");
+        }}
+        onCancel={() => setIsSuccessModalVisible(false)}
+      >
+        <p>{successMessage}</p>
+      </Modal>
+      <Modal
+        title="Error"
+        visible={isErrorModalVisible}
+        onOk={() => setIsErrorModalVisible(false)}
+        onCancel={() => setIsErrorModalVisible(false)}
+      >
+        <p>{errorMessage}</p>
+      </Modal>
     </AdminLayout>
   );
 };
+
 export default CreateProduct;
