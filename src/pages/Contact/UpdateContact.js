@@ -10,6 +10,7 @@ function UpdateContact() {
   const { id } = useParams();
   const [contact, setContact] = useState({});
   const [success, setSuccess] = useState("Let's reply");
+  const navigate =useNavigate()
   const {
     register,
     handleSubmit,
@@ -37,6 +38,7 @@ function UpdateContact() {
       );
       setContact(res.data);
       setSuccess("Successfully");
+     
     } catch (error) {
       console.error("Failed to update contact", error);
       setSuccess("");
@@ -67,7 +69,7 @@ function UpdateContact() {
                     required: "Message is required",
                     validate: (value) =>
                       value.length > 10 ||
-                      "Message must be longer than 10 characters",
+                      "Message must be longer than 6 characters",
                   })}
                   type="text"
                   id="message"
