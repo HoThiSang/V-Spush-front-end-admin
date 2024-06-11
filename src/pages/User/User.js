@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axiosService from "../../services/configAxios";
 import "./User.css";
-import UserItem from '../../components/UserItem'; 
-import { Modal } from "antd";
+import UserItem from '../../components/UserItem';
+import { Modal, message, Pagination } from "antd";
 import AdminLayout from "../../layouts/AdminLayout";
 
 const User = () => {
@@ -11,6 +11,8 @@ const User = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
+  const numEachPage = 8;
+  const [page, setPage] = useState({ minValue: 0, maxValue: numEachPage });
 
   const getUserData = async () => {
     try {
@@ -21,15 +23,15 @@ const User = () => {
     }
   };
 
-  const handleStatusChange = (id, newStatus, message, isError) => {
+  const handleStatusChange = (id, newStatus, messageContent, isError) => {
     if (isError) {
-      setErrorMessage(message);
+      setErrorMessage(messageContent);
       setIsErrorModalVisible(true);
     } else {
       setUsers((prevUsers) =>
         prevUsers.map((user) => (user.id === id ? { ...user, status: newStatus } : user))
       );
-      setSuccessMessage(message);
+      setSuccessMessage(messageContent);
       setIsSuccessModalVisible(true);
     }
   };
@@ -37,6 +39,12 @@ const User = () => {
   useEffect(() => {
     getUserData();
   }, []);
+  const handleChange = (value) => {
+    setPage({
+      minValue: (value - 1) * numEachPage,
+      maxValue: value * numEachPage,
+    });
+  };
 
   return (
     <AdminLayout>
@@ -48,6 +56,7 @@ const User = () => {
               <table className="table">
                 <thead>
                   <tr>
+                    <th>STT</th>
                     <th>User name</th>
                     <th>Phone</th>
                     <th>Email</th>
@@ -59,23 +68,35 @@ const User = () => {
                   </tr>
                 </thead>
                 <tbody className="table-border-bottom-0">
-                  {users.map((user) => (
-                    <UserItem
-                      key={user.id}
-                      id={user.id}
-                      username={user.name}
-                      phone={user.phone}
-                      email={user.email}
-                      dob={user.date_of_birth}
-                      address={user.address}
-                      avatar_url={user.image_url}
-                      role={user.role_id}
-                      status={user.status}
-                      onStatusChange={handleStatusChange}
-                    />
-                  ))}
+                  {users.length > 0 &&
+                    users
+                      .slice(page.minValue, page.maxValue)
+                      .map((user, index) => (
+                        <UserItem
+                          key={user.id}
+                          id={user.id}
+                          index={index + 1 + page.minValue}
+                          username={user.name}
+                          phone={user.phone}
+                          email={user.email}
+                          dob={user.date_of_birth}
+                          address={user.address}
+                          avatar_url={user.image_url}
+                          role={user.role_id}
+                          status={user.status}
+                          onStatusChange={handleStatusChange}
+                        />
+                      ))}
+
                 </tbody>
               </table>
+              <Pagination
+                defaultCurrent={1}
+                defaultPageSize={numEachPage}
+                onChange={handleChange}
+                total={users.length}
+                className="blog"
+              />
             </div>
           </div>
         </div>
