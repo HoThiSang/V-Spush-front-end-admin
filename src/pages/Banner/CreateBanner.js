@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { Flex, Input, Button, Modal } from "antd";
 import AdminLayout from "../../layouts/AdminLayout";
 import './style.css';
-import AdminLayout from "../../layouts/AdminLayout";
 const { TextArea } = Input;
 
 const CreateBanner = () => {
