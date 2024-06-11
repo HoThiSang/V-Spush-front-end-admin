@@ -4,6 +4,7 @@ import axiosService from "../../services/configAxios";
 import { Link } from "react-router-dom";
 import AdminLayout from "../../layouts/AdminLayout";
 import Contact from "../../components/Contact";
+import "./style.css"
 
 function DetailCategory() {
   const [category, setCategory] = useState({});
@@ -29,7 +30,8 @@ function DetailCategory() {
             <div className="col-lg-8 form-update-contact">
               <Contact title="Detail Contact" name="ID" value={category.id} />
               <Contact name="Category Name" value={category.category_name} />
-              <Link to="/categories">Turn Back</Link>
+              <br/>
+              <Link to="/categories" className="btn btn-primary btn-create-new btn-detail-category">Turn Back</Link>
             </div>
             <div className="col-lg-2"></div>
           </div>
