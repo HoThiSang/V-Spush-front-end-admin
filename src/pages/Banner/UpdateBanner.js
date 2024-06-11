@@ -3,11 +3,15 @@ import axiosService from "../../services/configAxios";
 import { useParams } from "react-router";
 import { Flex, Input, Modal } from "antd";
 import AdminLayout from "../../layouts/AdminLayout";
+import "./style.css";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+
 const { TextArea } = Input;
 
 const UpdateBanner = () => {
     const [banner, setBanner] = useState({});
     const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
     const [subTitle, setSubTitle] = useState("");
     const [imageFile, setImageFile] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
@@ -15,6 +19,7 @@ const UpdateBanner = () => {
     const [successMessage, setSuccessMessage] = useState('');
     const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
     const [image, setImage] = useState(null);
+    const navigate = useNavigate(); // Sử dụng hook useNavigate
 
     const { id } = useParams();
 
@@ -24,6 +29,7 @@ const UpdateBanner = () => {
             setBanner(response.data.data);
             setTitle(response.data.data.title);
             setSubTitle(response.data.data.sub_title);
+            setContent(response.data.data.content);
             setImage(response.data.data.image_url);
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message) {
@@ -44,6 +50,10 @@ const UpdateBanner = () => {
         setTitle(e.target.value);
     };
 
+    const handleChangeContent = (e) => {
+        setContent(e.target.value);
+    };
+
     const handleChangeSubTitle = (e) => {
         setSubTitle(e.target.value);
     };
@@ -54,16 +64,19 @@ const UpdateBanner = () => {
             setImageFile(e.target.files[0]);
         }
     };
+
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("title", title);
         formData.append("sub_title", subTitle);
+        formData.append("content", content);
         if (imageFile) {
             formData.append("image_url", imageFile);
         }
+
         try {
-            await axiosService.put(`/admin-update-banner/${id}`, formData, {
+            await axiosService.post(`/admin-update-banner/${id}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
@@ -81,6 +94,11 @@ const UpdateBanner = () => {
         }
     };
 
+    useEffect(() => {
+        if (isSuccessModalVisible) {
+            navigate("/banner");
+        }
+    }, [isSuccessModalVisible, navigate]);
     return (
         <AdminLayout>
             <div className="content-wrapper">
@@ -107,6 +125,13 @@ const UpdateBanner = () => {
                                             />
                                             <TextArea
                                                 showCount
+                                                maxLength={500}
+                                                placeholder="Enter banner content"
+                                                onChange={handleChangeContent}
+                                                value={content}
+                                            />
+                                            <TextArea
+                                                showCount
                                                 maxLength={5000}
                                                 placeholder="Enter banner sub-title"
                                                 style={{ height: 140, resize: "none" }}
@@ -118,7 +143,11 @@ const UpdateBanner = () => {
                                                 accept="image/*"
                                                 onChange={handleImageUpload}
                                             />
-                                            <img src={image ? image : banner.image_url} alt={banner.image_name} className="img-fluid" />
+                                            <img
+                                                src={image ? image : banner.image_url}
+                                                alt={banner.image_name}
+                                                className="img-fluid custom-image"
+                                            />
                                             <button className="btn btn-outline-primary" type="submit">
                                                 Submit
                                             </button>
