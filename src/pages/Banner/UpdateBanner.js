@@ -19,7 +19,7 @@ const UpdateBanner = () => {
     const [successMessage, setSuccessMessage] = useState('');
     const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
     const [image, setImage] = useState(null);
-    const navigate = useNavigate(); // Sử dụng hook useNavigate
+    const navigate = useNavigate();
 
     const { id } = useParams();
 

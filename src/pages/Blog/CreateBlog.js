@@ -66,7 +66,6 @@ const CreateBlog = () => {
       }
     }
   };
-
   return (
     <AdminLayout>
     <div className="content-wrapper">
