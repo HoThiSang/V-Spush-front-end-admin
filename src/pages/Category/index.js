@@ -27,6 +27,7 @@ function ShowCategory() {
         <div className="container-xxl flex-grow-1 container-p-y">
           <div className="card">
             <h5 className="card-header">Category</h5>
+            <div className="d-flex justify-content">
             <Link
             to={'/create-category'}
               className="btn btn-primary btn-create-new"
@@ -34,6 +35,7 @@ function ShowCategory() {
             >
               Create new
             </Link>
+            </div>
             <div className="table-responsive text-nowrap">
               <table className="table">
                 <thead>
