@@ -4,6 +4,7 @@ import AdminLayout from "../../layouts/AdminLayout";
 import { Input } from "antd";
 import { useParams } from "react-router";
 import axiosService from "../../services/configAxios";
+import { Link } from "react-router-dom";
 const { TextArea } = Input;
 
 const UpdateProduct = () => {
@@ -258,6 +259,11 @@ const UpdateProduct = () => {
                     </div>
                   </div>
                 </div>
+                <Link to={'/products'}>
+                <button  className="btn btn-outline-primary back">
+                  Back
+                </button>
+                </Link>
                 <button type="submit" className="btn btn-outline-primary">
                   Submit
                 </button>
