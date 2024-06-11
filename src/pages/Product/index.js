@@ -113,25 +113,8 @@ const Product = () => {
                             index === openedMenuIndex ? "show" : ""
                           }`}
                         >
-                          <Link
-                            className="dropdown-item"
-                            to={`/update-product/${product.id}`}
-                          >
-                            <i className="fa-solid fa-pen"></i> Edit
-                          </Link>
-
-                          <button
-                            type="button"
-                            className={`btn p-10 dropdown-toggle hide-arrow ${
-                              index === openedMenuIndex ? "show" : ""
-                            }`}
-                            data-bs-toggle="dropdown"
-                            onClick={() => toggleMenu(index)}
-                          >
-                            <i className="fa-solid fa-ellipsis-vertical"></i>
-                          </button>
                           <div className={`dropdown-menu ${index === openedMenuIndex ? "show" : ""}`}>
-                            <Link className="dropdown-item" to={`/edit/${product.id}`}>
+                            <Link className="dropdown-item" to={`/update-product/${product.id}`}>
                               <i className="fa-solid fa-pen"></i> Edit
                             </Link>
                             <button className="dropdown-item" onClick={() => handleDeleteProduct(product.id)}>
