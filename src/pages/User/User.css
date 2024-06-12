@@ -1,0 +1,14 @@
+.menu-item-enabled {
+    background-color: #52c41a; /* Màu nền cho nút Enable */
+    color: #fff; /* Màu chữ cho nút Enable */
+  }
+  
+  .menu-item-disabled {
+    background-color: #f5222d; /* Màu nền cho nút Disable */
+    color: #fff; /* Màu chữ cho nút Disable */
+  }
+  
+  .menu-item-enabled:hover, .menu-item-disabled:hover {
+    background-color: #1890ff; /* Màu nền khi di chuột qua */
+  }
+  
