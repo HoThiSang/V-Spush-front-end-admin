@@ -32,16 +32,13 @@ function Order() {
         <div className="card">
           <h5 className="card-header">Orders</h5>
           <div className="d-flex justify-content">
-            <Link to='' className="btn btn-primary btn-create-new" id="">
-              Create new
-            </Link>
           </div>
           <div className="table-responsive text-nowrap">
             <table className="table">
               <thead>
                 <tr>
                   <th></th>
-                  <th>User name</th>
+               
                   <th>Address</th>
                   <th>Phone Number</th>
                   <th>Payment Method</th>
@@ -54,10 +51,10 @@ function Order() {
                     {
                       orders.map((order, index)=>(
                         <TdTable
-                      index={index}
+                            key={index}
+                            index={index}
                             id={order.id}
                             phone_number = {order.phone_number}
-                            name = {order.name}
                             address = {order.address}
                             payment_method = {order.payment_method}
                             total_price={order.total_price}

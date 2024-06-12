@@ -274,7 +274,7 @@ const UpdateProduct = () => {
                           aria-hidden="true"
                         ></span>
                       ) : (
-                        "Delete"
+                        "Update"
                       )}
                     </button>
               </div>

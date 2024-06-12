@@ -107,11 +107,10 @@ const UpdateOrder = () => {
                           <option value="">
                             --Choose a status for order--
                           </option>
-
                           <option name="Ordered">Ordered</option>
-                          <option value="Delivery">Delivery</option>
-                          <option name="Recived">Recived</option>
-                          <option name="Cancel">Cancel</option>
+                          <option value="Delivering">Delivering</option>
+                          <option name="Received">Received</option>
+                          <option name="Cancelled">Cancelled</option>
                         </select>
                       </div>
                     </div>
