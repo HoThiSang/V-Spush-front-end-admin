@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import axiosService from "../../services/configAxios";
 import { Link } from "react-router-dom";
 import './AdminProfile.css';
+import {  Modal } from "antd";
 
 function AdminProfile() {
   const storedUser = localStorage.getItem("user");
   const user = storedUser ? JSON.parse(storedUser) : {};
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
+  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
 
   const [formData, setFormData] = useState({
     name: user.name || "",
@@ -67,15 +72,21 @@ function AdminProfile() {
         localStorage.setItem("user", JSON.stringify(updatedUser));
         setShowSuccess(true);
         setShowError(false);
+        setSuccessMessage(" Updated information successfully!");
+        setIsSuccessModalVisible(true);
       } else {
         console.error("Failed to update user profile");
         setShowSuccess(false);
         setShowError(true);
+        setErrorMessage("Failed to update user profile");
+      setIsErrorModalVisible(true);
       }
     } catch (error) {
       console.error("An error occurred while updating user profile:", error);
       setShowSuccess(false);
       setShowError(true);
+      setErrorMessage("An error occurred. Please try again later.");
+      setIsErrorModalVisible(true);
     }
   };
 
@@ -208,6 +219,23 @@ function AdminProfile() {
           </div>
         </div>
       </div>
+      <Modal
+          className="error"
+          title="Error"
+          open={isErrorModalVisible}
+          onOk={() => setIsErrorModalVisible(false)}
+          onCancel={() => setIsErrorModalVisible(false)}
+        >
+          <p>{errorMessage}</p>
+        </Modal>
+        <Modal
+          title="Success"
+          open={isSuccessModalVisible}
+          onOk={() => setIsSuccessModalVisible(false)}
+          onCancel={() => setIsSuccessModalVisible(false)}
+        >
+          <p>{successMessage}</p>
+        </Modal>
     </div>
   );
 }
