@@ -6,6 +6,7 @@ import React from "react";
 import Banner from "./pages/Banner";
 import CreateProduct from "./pages/Product/CreateProduct";
 import User from "./pages/User/User";
+import AdminProfile from "./pages/UserProfile/AdminProfile";
 import Home from './pages/Home'
 
 function App() {
@@ -31,7 +32,9 @@ function App() {
         <Route path="/update-category/:id" element={<UpdateCategory />} />
         <Route path="/create-product" element={<CreateProduct />} />
         <Route path="/update-product/:id" element={<UpdateProduct />} />
+
         <Route path="/users" element={<User />} />
+        <Route path="/admin-profile" element={<AdminProfile />} />
         <Route path="/update-order/:id" element={<UpdateOrder />} />
         <Route path="/home-page" element={<Home />} />
       </Routes>
