@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
+
 function TdTable(props) {
-  const {id, name, address, phone_number, total_price, order_status , payment_method} = props
+  const {id, name, address, phone_number, total_price, order_status , payment_method, index,  openedMenuIndex,
+    toggleMenu,} = props
   return (
     <tr key={id}>
       <td>
@@ -12,30 +15,30 @@ function TdTable(props) {
       <td>{total_price}</td>
       <td>{order_status}</td>
       <td>
-        <div className="dropdown">
+      <div className="dropdown">
           <button
             type="button"
-            className="btn p-10 dropdown-toggle hide-arrow"
+            className={`btn p-10 dropdown-toggle hide-arrow ${
+              index === openedMenuIndex ? "show" : ""
+            }`}
             data-bs-toggle="dropdown"
+            onClick={() => toggleMenu(index)}
           >
-            <i
-              className="fa-solid fa-ellipsis-vertical"
-            ></i>
+            <i className="fa-solid fa-ellipsis-vertical"></i>
           </button>
-          <div className="dropdown-menu">
-            <a
-              className="dropdown-item"
-              href="#!"
-            >
-              <i className="fa-solid fa-pen"></i> Edit
-            </a>
-            <a
-              className="dropdown-item"
-              href="#!"
-            >
-              <i className="fa-solid fa-trash" ></i>
+          <div
+            className={`dropdown-menu ${
+              index === openedMenuIndex ? "show" : ""
+            }`}
+          >
+            <Link className="dropdown-item" to={`/update-order/${id}`}>
+              <i className="fa-solid fa-pen"></i> Update
+            </Link>
+
+            <button className="btn" >
+              <i className="fa-solid fa-trash"></i>
               Delete
-            </a>
+            </button>
           </div>
         </div>
       </td>

@@ -80,6 +80,7 @@ function CreateCategory() {
             <div className="col-lg-2"></div>
           </div>
         </div>
+        
       </AdminLayout>
     </>
   );

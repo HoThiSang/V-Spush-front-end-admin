@@ -77,7 +77,6 @@ const UpdateProduct = () => {
     }
     formData.append("ingredient", ingredient);
 
-    // Kiểm tra các file ảnh
     for (let i = 0; i < pictures.length; i++) {
       if (
         ![
@@ -105,7 +104,7 @@ const UpdateProduct = () => {
     formData.append("ingredient", ingredient);
 
     try {
-      const response = await axiosService.post(
+        await axiosService.post(
         `/admin-product-update/${id}`,
         formData,
         {
