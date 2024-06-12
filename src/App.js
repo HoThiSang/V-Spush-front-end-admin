@@ -5,6 +5,7 @@ import Login from "./pages/Login/Login";
 import React from "react";
 import Banner from "./pages/Banner";
 import CreateProduct from "./pages/Product/CreateProduct";
+import User from "./pages/User/User";
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
         <Route path="/create-product" element={<CreateProduct />} />
 
         <Route path="/update-product/:id" element={<UpdateProduct />} />
+
+        <Route path="/users" element={<User />} />
       </Routes>
 
   );
