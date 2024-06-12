@@ -10,13 +10,14 @@ import { Modal } from "antd";
 function UpdateContact() {
   const { id } = useParams();
   const [contact, setContact] = useState({});
+
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
 
-  // const navigate = useNavigate();
+ 
   const {
     register,
     handleSubmit,
@@ -47,7 +48,6 @@ function UpdateContact() {
       setContact(res.data);
       setSuccessMessage("Reply email is successfully!");
       setIsSuccessModalVisible(true);
-      
     } catch (error) {
       setErrorMessage("Failed to update contact !");
       setIsErrorModalVisible(true);
@@ -63,6 +63,7 @@ function UpdateContact() {
             <span className="text-muted fw-light">Forms /</span> Reply email{" "}
           </h4>
           <form onSubmit={handleSubmit(updateContact)}>
+
             <div className="row">
               <div className="col-xl">
                 <div className="card mb-4">
