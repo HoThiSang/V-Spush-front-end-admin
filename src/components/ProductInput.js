@@ -2,7 +2,7 @@ const ProductInput = (props) => {
   const { label, icon,  name, value , onChange} = props;
   return (
     <div className="mb-3">
-      <label className="form-label" for={name}>
+      <label className="form-label" htmlFor={name}>
         {label}
       </label>
       <div className="input-group input-group-merge">
@@ -10,14 +10,12 @@ const ProductInput = (props) => {
           <i className={icon}></i>
         </span>
         <input
-      
           className="form-control"
           value={value}
           onChange={onChange}
           aria-describedby="basic-icon-default-fullname2"
         />
       </div>
-     
     </div>
   );
 };

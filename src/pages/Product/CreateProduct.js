@@ -35,6 +35,7 @@ const CreateProduct = () => {
   const [branchError, setBranchError] = useState("");
   const [imageError, setImageError] = useState("");
   const [categoryIdError, setCategoryIdError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const {
     handleSubmit,
     formState: { errors },
@@ -135,9 +136,9 @@ const CreateProduct = () => {
     imageFiles.forEach((file, index) => {
       formData.append(`image_url[${index}]`, file);
     });
-
+    setIsLoading(true)
     try {
-      const response = await axiosService.post("/admin-add-product", formData, {
+      await axiosService.post("/admin-add-product", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -154,6 +155,7 @@ const CreateProduct = () => {
       setImages([]);
       setSuccessMessage("Product created successfully!");
       setIsSuccessModalVisible(true);
+      setIsLoading(false)
     } catch (error) {
       if (
         error.response &&
@@ -274,9 +276,10 @@ const CreateProduct = () => {
                           />
                         ))}
                       </div>
-                      <button className="btn btn-outline-primary" type="submit">
-                        Submit
-                      </button>
+                      <button class="btn btn-primary" type="button" disabled={isLoading} onClick={handleFormSubmit}>
+                          { isLoading ? <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : "Submit" }
+                       
+                        </button>
                     </Flex>
                   </div>
                 </div>
