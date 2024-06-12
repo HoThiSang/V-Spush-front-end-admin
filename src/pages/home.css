@@ -41,16 +41,3 @@
 .heading-4, .icon4{
     color: #ff006e;
 }
-/* .item-card:hover {
-  transform: scale(1.1);
-  transition: transform 0.6s ease-out;
-} */
-
-/* .item-card {
-  perspective: 1000px;
-}
-
-.item-card:hover {
-  transform: rotateY(-20deg);
-  transition: transform 0.3s ease-out;
-} */
