@@ -6,6 +6,7 @@ import React from "react";
 import Banner from "./pages/Banner";
 import CreateProduct from "./pages/Product/CreateProduct";
 import User from "./pages/User/User";
+import Home from './pages/Home'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/update-product/:id" element={<UpdateProduct />} />
         <Route path="/users" element={<User />} />
         <Route path="/update-order/:id" element={<UpdateOrder />} />
+        <Route path="/home-page" element={<Home />} />
       </Routes>
 
   );
