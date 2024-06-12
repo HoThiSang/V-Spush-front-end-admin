@@ -1,0 +1,43 @@
+.home-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.item-card {
+  max-width: 18em;
+  height: 10em;
+  border-radius: 20px;
+  padding-left: 15px;
+  padding-top: 15px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  display:flex;
+  flex-direction: row;
+
+}
+
+.icon-home {
+  font-size: 30px;
+  margin-bottom: 20px;
+  padding: 2px;
+}
+
+.item-card:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    transition: box-shadow 0.3s ease-out;
+    border: 1px solid gray;
+  }
+
+.heading-1, .icon1{
+    color: #80ed99;
+}
+.heading-2, .icon2{
+    color: #f28482;
+}
+.heading-3, .icon3{
+    color: #ffbe0b;
+}
+.heading-4, .icon4{
+    color: #ff006e;
+}
