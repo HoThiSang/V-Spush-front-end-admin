@@ -67,7 +67,7 @@ const UpdateBlog = () => {
     formData.append("image_url", imageFile);
     console.log(formData)
     try {
-      const response = await axiosService.post(`/admin-update-post/${id}`, formData, {
+       await axiosService.post(`/admin-update-post/${id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }

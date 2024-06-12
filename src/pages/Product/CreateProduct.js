@@ -138,7 +138,7 @@ const CreateProduct = () => {
     });
     setIsLoading(true)
     try {
-      const response = await axiosService.post("/admin-add-product", formData, {
+      await axiosService.post("/admin-add-product", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

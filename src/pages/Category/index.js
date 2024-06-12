@@ -2,6 +2,7 @@ import { useEffect, useState} from "react";
 import axiosService from "../../services/configAxios";
 import { Link } from "react-router-dom";
 import AdminLayout from "../../layouts/AdminLayout";
+
 function ShowCategory() {
   const [categories, setCategory] = useState([]);
   const [openedMenuIndex, setOpenedMenuIndex] = useState(null);
@@ -20,6 +21,7 @@ function ShowCategory() {
   useEffect(() => {
     getCategory();
   }, []);
+  
   return (
     <>
     <AdminLayout>
@@ -47,7 +49,7 @@ function ShowCategory() {
                 </thead>
                 <tbody className="table-border-bottom-0">
                   {categories.map((category, index) => (
-                    <tr key={category.index}>
+                    <tr key={index}>
                       <td>
                         <strong>{category.id}</strong>
                       </td>

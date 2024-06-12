@@ -14,6 +14,7 @@ const CreateBlog = () => {
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
   const [image, setImage] = useState(null);
+
   const {
     register,
     handleSubmit,
@@ -42,7 +43,7 @@ const CreateBlog = () => {
     formData.append("content", content);
     formData.append("image_url", imageFile);
     try {
-      const response = await axiosService.post("/admin-create-post", formData, {
+        await axiosService.post("/admin-create-post", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
@@ -73,7 +74,7 @@ const CreateBlog = () => {
         <h4 className="fw-bold py-3 mb-4">
           <span className="text-muted fw-light">Forms/</span> Create new blog{" "}
         </h4>
-        <form onSubmit={handleSubmit(handleFormSubmit)}>
+        <form onSubmit={handleFormSubmit}>
           <div class="row">
             <div class="col-xl">
               <div class="card mb-4">
@@ -85,13 +86,7 @@ const CreateBlog = () => {
                   <Flex vertical gap={32}>
                   {errors.title && <span className="error">{errors.title.message}</span>}
                     <TextArea
-                      {...register("title", {
-                        required: "Title is required",
-                        maxLength: {
-                          value: 100,
-                          message: "Title must be less than 100 characters"
-                        }
-                      })}
+                    
                       showCount
                       maxLength={100}
                       placeholder="Enter blog title"

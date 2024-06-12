@@ -6,6 +6,10 @@ import AdminLayout from "../../layouts/AdminLayout";
 
 function Order() {
   const [orders, setOrders] = useState([]);
+  const [openedMenuIndex, setOpenedMenuIndex] = useState(null);
+  const toggleMenu = (index) => {
+    setOpenedMenuIndex(index === openedMenuIndex ? null : index);
+  };
 
   const getOrderData = async () => {
     try {
@@ -26,18 +30,15 @@ function Order() {
     <div className="content-wrapper">
       <div className="container-xxl flex-grow-1 container-p-y">
         <div className="card">
-          <h5 className="card-header">Users</h5>
+          <h5 className="card-header">Orders</h5>
           <div className="d-flex justify-content">
-            <Link to='' className="btn btn-primary btn-create-new" id="">
-              Create new
-            </Link>
           </div>
           <div className="table-responsive text-nowrap">
             <table className="table">
               <thead>
                 <tr>
                   <th></th>
-                  <th>User name</th>
+               
                   <th>Address</th>
                   <th>Phone Number</th>
                   <th>Payment Method</th>
@@ -48,19 +49,23 @@ function Order() {
               </thead>
               <tbody className="table-border-bottom-0">
                     {
-                      orders.map((order)=>(
+                      orders.map((order, index)=>(
                         <TdTable
+                            key={index}
+                            index={index}
                             id={order.id}
                             phone_number = {order.phone_number}
-                            name = {order.name}
                             address = {order.address}
                             payment_method = {order.payment_method}
                             total_price={order.total_price}
                             order_status={order.order_status}
+                            toggleMenu={()=>toggleMenu(index)}
+                            openedMenuIndex={openedMenuIndex}
                             />
+
                       ))
                     }
-                  
+
               </tbody>
             </table>
           </div>

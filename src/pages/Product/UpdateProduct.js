@@ -21,7 +21,7 @@ const UpdateProduct = () => {
   const [categoryId, setCategoryId] = useState(0);
   const [pictures, setPictures] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { id } = useParams();
 
@@ -57,16 +57,13 @@ const UpdateProduct = () => {
     } catch (err) {
       setError(err.message);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
-  // debugger;
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-    console.log("Image ", image);
-    console.log("Pric ", pictures);
-
+      setIsLoading(true)
     const formData = new FormData();
 
     formData.append("discount", discount);
@@ -77,7 +74,6 @@ const UpdateProduct = () => {
     }
     formData.append("ingredient", ingredient);
 
-    // Kiểm tra các file ảnh
     for (let i = 0; i < pictures.length; i++) {
       if (
         ![
@@ -105,7 +101,7 @@ const UpdateProduct = () => {
     formData.append("ingredient", ingredient);
 
     try {
-      const response = await axiosService.post(
+        await axiosService.post(
         `/admin-product-update/${id}`,
         formData,
         {
@@ -115,6 +111,7 @@ const UpdateProduct = () => {
         }
       );
       alert("Update product successfully!");
+      setIsLoading(false)
     } catch (error) {
       if (error.response && error.response.data && error.response.data.errors) {
         const errors = error.response.data.errors;
@@ -264,9 +261,22 @@ const UpdateProduct = () => {
                   Back
                 </button>
                 </Link>
-                <button type="submit" className="btn btn-outline-primary">
-                  Submit
-                </button>
+                <button
+                      className="btn btn-primary"
+                      type="button"
+                      disabled={isLoading}
+                      onClick={handleSubmitForm}
+                    >
+                      {isLoading ? (
+                        <span
+                          className="spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                      ) : (
+                        "Update"
+                      )}
+                    </button>
               </div>
             </div>
           </form>

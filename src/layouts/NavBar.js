@@ -3,7 +3,7 @@ export const NavBar =()=>{
     return (
         <nav className="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
         <div className="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-            <a className="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+            <a className="nav-item nav-link px-0 me-xl-4" href="#!)">
                 <i className="bx bx-menu bx-sm"></i>
             </a>
         </div>
@@ -15,7 +15,7 @@ export const NavBar =()=>{
             <ul className="navbar-nav flex-row align-items-center ms-auto">
               
                 <li className="nav-item lh-1 me-3">
-                    <a className="github-button" href="#!" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
+                    <a className="github-button" href="#!" data-icon="">Star</a>
                 </li>
 
            
@@ -28,7 +28,7 @@ export const NavBar =()=>{
                     <ul className="dropdown-menu dropdown-menu-end">
                         
                         <li>
-                            <a className="dropdown-item" href="{{ route('admin-profile') }}">
+                            <a className="dropdown-item" href="#!">
                                 <i className="bx bx-user me-2"></i>
                                 <span className="align-middle">My Profile</span>
                             </a>
@@ -40,8 +40,8 @@ export const NavBar =()=>{
                         </li>
 
                         <li>
-                            <a className="dropdown-item" href="#!" rel="noreferrer" ></a>
-                            <form id="logout-form" action="#!" method="POST" class="d-none">
+                            <a className="dropdown-item" href="#!"  >Settings</a>
+                            <form id="logout-form" action="#!" method="POST" className="d-none">
                             </form>
                         </li>
                     </ul>
