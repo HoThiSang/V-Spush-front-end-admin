@@ -14,6 +14,7 @@ const CreateBlog = () => {
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
   const [image, setImage] = useState(null);
+
   const {
     register,
     handleSubmit,
@@ -42,7 +43,7 @@ const CreateBlog = () => {
     formData.append("content", content);
     formData.append("image_url", imageFile);
     try {
-      const response = await axiosService.post("/admin-create-post", formData, {
+        await axiosService.post("/admin-create-post", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }

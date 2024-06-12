@@ -4,9 +4,9 @@ import { TopBanner } from "../components/TopBanner";
 
 const SideBar = () => {
     return (
-        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+        <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme">
         <TopBanner />
-             <div class="menu-inner-shadow mt-5"></div>
+             <div className="menu-inner-shadow mt-5"></div>
                 {
                     SideBarData.map((item, index)=> (
                         <SideBarItem 
