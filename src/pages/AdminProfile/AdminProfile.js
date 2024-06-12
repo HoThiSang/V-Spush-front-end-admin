@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axiosService from "../../services/configAxios";
 import { Link } from "react-router-dom";
 import './AdminProfile.css';
-import {  Modal } from "antd";
+import { Modal } from "antd";
 
 function AdminProfile() {
   const storedUser = localStorage.getItem("user");
@@ -24,8 +24,7 @@ function AdminProfile() {
   });
 
   const [uploadedImage, setUploadedImage] = useState(null);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [showError, setShowError] = useState(false);
+  const [validationErrors, setValidationErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,44 +47,44 @@ function AdminProfile() {
     }
     try {
       const updateData = new FormData();
-      updateData.append('name', formData.name);
-      updateData.append('email', formData.email);
-      updateData.append('date_of_birth', formData.date_of_birth);
-      updateData.append('address', formData.address);
-      updateData.append('phone', formData.phone);
-      updateData.append('id', formData.id);
-      updateData.append('role_id', formData.role_id);
+      updateData.append("name", formData.name);
+      updateData.append("email", formData.email);
+      updateData.append("date_of_birth", formData.date_of_birth);
+      updateData.append("address", formData.address);
+      updateData.append("phone", formData.phone);
+      updateData.append("id", formData.id);
+      updateData.append("role_id", formData.role_id);
 
       if (uploadedImage) {
-        updateData.append('image_url', uploadedImage);
+        updateData.append("image_url", uploadedImage);
       }
 
       const profileResponse = await axiosService.post(`/user/updateInformation/${formData.id}`, updateData, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
-          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          "Content-Type": "multipart/form-data",
         },
       });
 
       if (profileResponse.status === 200) {
         const updatedUser = profileResponse.data.user;
         localStorage.setItem("user", JSON.stringify(updatedUser));
-        setShowSuccess(true);
-        setShowError(false);
-        setSuccessMessage(" Updated information successfully!");
+        setSuccessMessage("Updated information successfully!");
         setIsSuccessModalVisible(true);
+        setValidationErrors({});
       } else {
         console.error("Failed to update user profile");
-        setShowSuccess(false);
-        setShowError(true);
         setErrorMessage("Failed to update user profile");
-      setIsErrorModalVisible(true);
+        setIsErrorModalVisible(true);
       }
     } catch (error) {
-      console.error("An error occurred while updating user profile:", error);
-      setShowSuccess(false);
-      setShowError(true);
-      setErrorMessage("An error occurred. Please try again later.");
+      if (error.response && error.response.status === 400 && error.response.data.errors) {
+        setValidationErrors(error.response.data.errors);
+        setErrorMessage("Validation failed. Please check the fields and try again.");
+      } else {
+        console.error("An error occurred while updating user profile:", error);
+        setErrorMessage("An error occurred. Please try again later.");
+      }
       setIsErrorModalVisible(true);
     }
   };
@@ -102,6 +101,7 @@ function AdminProfile() {
       image_url: user.image_url || "https://down-vn.img.susercontent.com/file/cdf9af013aa652eb0596cb252b1101d4_tn",
     });
     setUploadedImage(null);
+    setValidationErrors({});
   };
 
   return (
@@ -125,7 +125,9 @@ function AdminProfile() {
         <div className="col-md-10 main-content">
           <div className="d-flex justify-content-between align-items-center mb-4">
             <h2>Profile</h2>
-            <Link to="/categories" className="btn btn-outline-primary">Back</Link>
+            <Link to="/categories" className="btn btn-outline-primary">
+              Back
+            </Link>
           </div>
           <div id="personal-info" className="section">
             <div className="card mb-4">
@@ -140,12 +142,25 @@ function AdminProfile() {
                 <div className="button-wrapper">
                   <label htmlFor="upload" className="btn btn-primary me-2 mb-4">
                     <span>Upload new photo</span>
-                    <input type="file" id="upload" className="account-file-input" hidden accept="image/png, image/jpeg" onChange={handleImageChange} />
+                    <input
+                      type="file"
+                      id="upload"
+                      className="account-file-input"
+                      hidden
+                      accept="image/png, image/jpeg"
+                      onChange={handleImageChange}
+                    />
                   </label>
-                  <button type="button" className="btn btn-outline-secondary mb-4" onClick={handleReset}>
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary mb-4"
+                    onClick={handleReset}
+                  >
                     <span>Reset</span>
                   </button>
-                  <p className="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                  <p className="text-muted mb-0">
+                    Allowed JPG, GIF or PNG. Max size of 800K
+                  </p>
                 </div>
               </div>
             </div>
@@ -155,7 +170,9 @@ function AdminProfile() {
                 <input type="hidden" name="role_id" value={formData.role_id} />
                 <div className="row">
                   <div className="mb-3 col-md-6">
-                    <label htmlFor="name" className="form-label">Full Name</label>
+                    <label htmlFor="name" className="form-label">
+                      Full Name
+                    </label>
                     <input
                       className="form-control"
                       type="text"
@@ -163,11 +180,15 @@ function AdminProfile() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      autoFocus
                     />
+                    {validationErrors.name && (
+                      <div className="text-danger">{validationErrors.name[0]}</div>
+                    )}
                   </div>
                   <div className="mb-3 col-md-6">
-                    <label htmlFor="email" className="form-label">Email</label>
+                    <label htmlFor="email" className="form-label">
+                      Email
+                    </label>
                     <input
                       className="form-control"
                       type="text"
@@ -176,9 +197,14 @@ function AdminProfile() {
                       value={formData.email}
                       onChange={handleChange}
                     />
+                    {validationErrors.email && (
+                      <div className="text-danger">{validationErrors.email[0]}</div>
+                    )}
                   </div>
                   <div className="mb-3 col-md-6">
-                    <label htmlFor="date_of_birth" className="form-label">Date of birth</label>
+                    <label htmlFor="date_of_birth" className="form-label">
+                      Date of birth
+                    </label>
                     <input
                       className="form-control"
                       type="date"
@@ -187,9 +213,14 @@ function AdminProfile() {
                       value={formData.date_of_birth}
                       onChange={handleChange}
                     />
+                    {validationErrors.date_of_birth && (
+                      <div className="text-danger">{validationErrors.date_of_birth[0]}</div>
+                    )}
                   </div>
                   <div className="mb-3 col-md-6">
-                    <label htmlFor="address" className="form-label">Address</label>
+                    <label htmlFor="address" className="form-label">
+                      Address
+                    </label>
                     <input
                       type="text"
                       className="form-control"
@@ -198,9 +229,14 @@ function AdminProfile() {
                       value={formData.address}
                       onChange={handleChange}
                     />
+                    {validationErrors.address && (
+                      <div className="text-danger">{validationErrors.address[0]}</div>
+                    )}
                   </div>
                   <div className="mb-3 col-md-6">
-                    <label htmlFor="phone" className="form-label">Phone number</label>
+                    <label htmlFor="phone" className="form-label">
+                      Phone number
+                    </label>
                     <input
                       type="text"
                       className="form-control"
@@ -209,10 +245,15 @@ function AdminProfile() {
                       value={formData.phone}
                       onChange={handleChange}
                     />
+                    {validationErrors.phone && (
+                      <div className="text-danger">{validationErrors.phone[0]}</div>
+                    )}
                   </div>
                 </div>
                 <div className="mt-4">
-                  <button type="submit" className="btn btn-primary">Save changes</button>
+                  <button type="submit" className="btn btn-primary">
+                    Save changes
+                  </button>
                 </div>
               </form>
             </div>
@@ -220,22 +261,22 @@ function AdminProfile() {
         </div>
       </div>
       <Modal
-          className="error"
-          title="Error"
-          open={isErrorModalVisible}
-          onOk={() => setIsErrorModalVisible(false)}
-          onCancel={() => setIsErrorModalVisible(false)}
-        >
-          <p>{errorMessage}</p>
-        </Modal>
-        <Modal
-          title="Success"
-          open={isSuccessModalVisible}
-          onOk={() => setIsSuccessModalVisible(false)}
-          onCancel={() => setIsSuccessModalVisible(false)}
-        >
-          <p>{successMessage}</p>
-        </Modal>
+        className="error"
+        title="Error"
+        open={isErrorModalVisible}
+        onOk={() => setIsErrorModalVisible(false)}
+        onCancel={() => setIsErrorModalVisible(false)}
+      >
+        <p>{errorMessage}</p>
+      </Modal>
+      <Modal
+        title="Success"
+        open={isSuccessModalVisible}
+        onOk={() => setIsSuccessModalVisible(false)}
+        onCancel={() => setIsSuccessModalVisible(false)}
+      >
+        <p>{successMessage}</p>
+      </Modal>
     </div>
   );
 }
