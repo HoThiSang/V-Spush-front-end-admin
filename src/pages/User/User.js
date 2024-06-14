@@ -104,7 +104,6 @@ const User = () => {
           title="Error"
           open={isErrorModalVisible}
           onOk={() => setIsErrorModalVisible(false)}
-          onCancel={() => setIsErrorModalVisible(false)}
         >
           <p>{errorMessage}</p>
         </Modal>
@@ -112,7 +111,6 @@ const User = () => {
           title="Success"
           open={isSuccessModalVisible}
           onOk={() => setIsSuccessModalVisible(false)}
-          onCancel={() => setIsSuccessModalVisible(false)}
         >
           <p>{successMessage}</p>
         </Modal>

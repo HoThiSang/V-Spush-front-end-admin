@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axiosService from "../../services/configAxios";
 import AdminLayout from "../../layouts/AdminLayout";
 import { useForm } from "react-hook-form";
@@ -14,6 +14,7 @@ function UpdateCategory() {
   const [successMessage, setSuccessMessage] = useState("");
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
+  const navigate=useNavigate();
 
   const { id } = useParams();
   const {
@@ -40,7 +41,7 @@ function UpdateCategory() {
       setIsLoading(false);
       setSuccessMessage("Update category successfully!");
       setIsSuccessModalVisible(true);
-      // navigate("/categories");
+      navigate("/categories");
     } catch (error) {
       setErrorMessage("Update category failure !");
       setIsErrorModalVisible(true);
@@ -55,7 +56,7 @@ function UpdateCategory() {
               <span className="text-muted fw-light">Forms /</span> Update
               category{" "}
             </h4>
-            <form onSubmit={handleSubmit(updateCategory)}>
+            <form >
               <div className="row">
                 <div className="col-xl">
                   <div className="card mb-4">
@@ -66,10 +67,10 @@ function UpdateCategory() {
                     <div className="card-body">
                       <input
                         {...register("message", {
-                          required: "Message is required",
+                          required: "Category name is required",
                           validate: (value) =>
                             value.length > 4 ||
-                            "Message must be longer than 10 characters"
+                            "Message must be longer than 4 characters"
                         })}
                         type="text"
                         id="message"
@@ -79,6 +80,7 @@ function UpdateCategory() {
                         }}
                         className="form-control"
                       />
+                      <br/>
                       {errors.message && (
                         <p className="error-input">{errors.message.message}</p>
                       )}
@@ -94,9 +96,9 @@ function UpdateCategory() {
                     </Link>
                     <button
                       className="btn btn-primary"
-                      type="button"
+                      type="submit"
                       disabled={isLoading}
-                      onClick={updateCategory}
+                      onClick={handleSubmit(updateCategory)}
                     >
                       {isLoading ? (
                         <span

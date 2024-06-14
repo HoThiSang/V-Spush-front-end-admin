@@ -6,7 +6,7 @@ import React from "react";
 import Banner from "./pages/Banner";
 import CreateProduct from "./pages/Product/CreateProduct";
 import User from "./pages/User/User";
-import AdminProfile from "./pages/UserProfile/AdminProfile";
+import AdminProfile from "./pages/AdminProfile/AdminProfile";
 import Home from './pages/Home'
 
 function App() {

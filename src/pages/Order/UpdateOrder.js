@@ -68,15 +68,18 @@ const UpdateOrder = () => {
                     <ProductInput
                       label="Phone number"
                       value={order.phone_number}
+                      disabled
                     />
-                    <ProductInput label="Phone number" value={order.address} />
+                    <ProductInput label="Address" value={order.address}/>
                     <ProductInput
                       label="Payment method"
                       value={order.payment_method}
+                      disabled
                     />
                     <ProductInput
                       label="Payment method"
                       value={order.order_status}
+                      disabled
                     />
                   </div>
                 </div>

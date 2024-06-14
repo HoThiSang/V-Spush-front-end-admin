@@ -10,23 +10,6 @@ export const NavBar = () => {
     const [user, setUser] = useState(null);
     const defaultAvatar = "https://t3.ftcdn.net/jpg/05/53/79/60/360_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg";
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const response = await axiosService.get("/user/profile", {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
-                    },
-                });
-                setUser(response.data);
-            } catch (error) {
-                console.error("Error fetching user data:", error);
-            }
-        };
-
-        fetchUserData();
-    }, []);
-
     const handleLogout = async () => {
         try {
             await axiosService.post("/logout", null, {

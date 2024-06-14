@@ -125,7 +125,7 @@ function AdminProfile() {
         <div className="col-md-10 main-content">
           <div className="d-flex justify-content-between align-items-center mb-4">
             <h2>Profile</h2>
-            <Link to="/categories" className="btn btn-outline-primary">
+            <Link to="/home-page" className="btn btn-outline-primary">
               Back
             </Link>
           </div>

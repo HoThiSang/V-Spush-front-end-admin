@@ -40,7 +40,7 @@ const DeleteCategory = () => {
         <div className="content-wrapper">
           <div className="container-xxl flex-grow-1 container-p-y">
             <h4 className="fw-bold py-3 mb-4">
-              <span className="text-muted fw-light">Forms /</span> Detail
+              <span className="text-muted fw-light">Forms /</span> Delete
               category{" "}
             </h4>
             <form>
@@ -48,7 +48,7 @@ const DeleteCategory = () => {
                 <div className="col-xl">
                   <div className="card mb-4">
                     <div className="card-header d-flex justify-content-between align-items-center">
-                      <h5 className="mb-0">Create new category</h5>
+                      <h5 className="mb-0">Delete category</h5>
                       <small className="text-muted float-end">l</small>
                     </div>
                     <div className="card-body">

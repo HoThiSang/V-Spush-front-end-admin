@@ -24,7 +24,11 @@ const Product = () => {
 
   const getProductData = async () => {
     try {
-      const response = await axiosService.get("/admin-product");
+      const response = await axiosService.get("/admin-product", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+    },
+    });
       const responseData = response.data;
       const updatedProducts = {};
       responseData.data.forEach((product) => {

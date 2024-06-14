@@ -34,7 +34,7 @@ function DetailCategory() {
                 <div className="col-xl">
                   <div className="card mb-4">
                     <div className="card-header d-flex justify-content-between align-items-center">
-                      <h5 className="mb-0">Create new category</h5>
+                      <h5 className="mb-0">Detail category</h5>
                       <small className="text-muted float-end">l</small>
                     </div>
                     <div className="card-body">
@@ -45,6 +45,7 @@ function DetailCategory() {
                       />
                     </div>
                   </div>
+                  <Link className="btn btn-primary" style={{ marginRight: '10px' }} to={`/categories`}>Back</Link>
                 </div>
                 <div className="col-xl">
                   <div className="card mb-4">
