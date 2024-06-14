@@ -25,7 +25,7 @@ const UpdateProduct = () => {
 
   const { id } = useParams();
 
-  const getproductData = async (id) => {
+  const getProductData = async (id) => {
     try {
       const response = await axiosService.get(`/admin-product-detail/${id}`);
       setImage(response.data.imageData);
@@ -44,7 +44,7 @@ const UpdateProduct = () => {
   };
 
   useEffect(() => {
-    getproductData(id);
+    getProductData(id);
   }, [id]);
 
   const handleImageUpload = (e) => {
