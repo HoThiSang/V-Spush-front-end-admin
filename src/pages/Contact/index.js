@@ -14,7 +14,7 @@ function ShowContact() {
     try {
       const response = await axiosService.get(`/admin-contact`);
       setContact(response.data.data);
-      console.log(response.data.data)
+      console.log(response.data.data);
     } catch (error) {
       console.log("Error get all contact", error);
     }
@@ -24,7 +24,6 @@ function ShowContact() {
   }, []);
 
   return (
- 
     <AdminLayout>
       <div className="content-wrapper">
         <div className="container-xxl flex-grow-1 container-p-y">
@@ -51,7 +50,15 @@ function ShowContact() {
                       <td>{contact.email}</td>
                       <td>{contact.subject}</td>
                       <td>{contact.message}</td>
-                      <td>{contact.contact_status}</td>
+                      <td>
+                       
+                        {contact.contact_status === "Contacted" && (
+                          <span className="badge bg-success">Contacted</span>
+                        )}
+                        {contact.contact_status !== "Contacted" && (
+                          <span className="badge bg-danger">Not contacted</span>
+                        )}
+                      </td>
                       <td>
                         <div className="dropdown">
                           <button
@@ -86,7 +93,7 @@ function ShowContact() {
           </div>
         </div>
       </div>
-      </AdminLayout>
+    </AdminLayout>
   );
 }
 

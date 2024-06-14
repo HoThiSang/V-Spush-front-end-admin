@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 export  const TopBanner = () => {
     return (
       <div className="app-brand demo">
-        <a href="#!" className="app-brand-link">
+        <Link to="/home-page" className="app-brand-link">
           <span className="app-brand-logo demo">
             <svg
               width="25"
@@ -78,7 +80,7 @@ export  const TopBanner = () => {
           <span className="app-brand-text demo menu-text fw-bolder ms-2">
             V-Spush
           </span>
-        </a>
+        </Link>
   
         <a
           href="#!"

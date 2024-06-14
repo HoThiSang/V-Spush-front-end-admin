@@ -14,12 +14,12 @@ const UpdateBlog = () => {
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   const [image, setImage] = useState(null)
 
     const {id} = useParams();
     console.log(id)
-  const getBlogData = async (id) => {
+    const getBlogData = async (id) => {
     try {
       const response = await axiosService.get(`/admin-show-post/${id}`);
       setBlog(response.data.data)
@@ -65,7 +65,7 @@ const UpdateBlog = () => {
     formData.append("title", title);
     formData.append("content", content);
     formData.append("image_url", imageFile);
-    console.log(formData)
+    setIsLoading(true)
     try {
        await axiosService.post(`/admin-update-post/${id}`, formData, {
         headers: {
@@ -74,6 +74,7 @@ const UpdateBlog = () => {
       });
        setSuccessMessage('Blog updated successfully!');
       setIsSuccessModalVisible(true);
+      setIsLoading(false)
     } catch (error) {
         if ( error.response && error.response.data && error.response.data.message) {
             setErrorMessage(error.response.data.message);
@@ -124,8 +125,21 @@ const UpdateBlog = () => {
                     />
 
                     <img  src={image ? image: blog.image_url } alt={blog.image_name}  className="image-fluid"/>
-                    <button className="btn btn-outline-primary" type="submit">
-                      Submit
+                    <button
+                      className="btn btn-primary"
+                      type="button"
+                      disabled={isLoading}
+                      onClick={handleFormSubmit}
+                    >
+                      {isLoading ? (
+                        <span
+                          className="spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                      ) : (
+                        "Update"
+                      )}
                     </button>
                   </Flex>
                 </div>
