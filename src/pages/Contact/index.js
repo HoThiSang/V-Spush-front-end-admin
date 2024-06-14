@@ -44,7 +44,7 @@ function ShowContact() {
                 </thead>
                 <tbody className="table-border-bottom-0">
                   {contacts.map((contact, index) => (
-                    <tr key={contact.index}>
+                    <tr key={index}>
                       <td>
                         <strong>{contact.name}</strong>
                       </td>
@@ -75,11 +75,6 @@ function ShowContact() {
                             >
                               <i className="fa-solid fa-pen"></i> Edit
                             </Link>
-
-                            <a className="dropdown-item" href="#!">
-                              <i className="fa-solid fa-trash"></i>
-                              Delete
-                            </a>
                           </div>
                         </div>
                       </td>

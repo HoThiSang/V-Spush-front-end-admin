@@ -42,7 +42,7 @@ function CreateCategory() {
               <span className="text-muted fw-light">Forms /</span> Create new
               category{" "}
             </h4>
-            <form onSubmit={handleSubmit(createCategory)}>
+            <form >
               <div className="row">
                 <div className="col-xl">
                   <div className="card mb-4">
@@ -53,10 +53,10 @@ function CreateCategory() {
                     <div className="card-body">
                       <input
                         {...register("message", {
-                          required: "Message is required",
+                          required: "Category name is required",
                           validate: (value) =>
-                            value.length > 10 ||
-                            "Message must be longer than 6 characters"
+                            value.length > 4 ||
+                            "Message must be longer than 4 characters"
                         })}
                         value={category_name}
                         type="text"
@@ -65,18 +65,18 @@ function CreateCategory() {
                         onChange={getName}
                         className="form-control"
                       />
+                      <br/>
                       {errors.message && (
                         <p className="error-input">{errors.message.message}</p>
                       )}
                     </div>
-                    
                   </div>
                   <Link className="btn btn-primary" style={{ marginRight: '10px' }} to={`/categories`}>Back</Link>
                   <button
                       className="btn btn-primary"
-                      type="button"
+                      type="submit"
                       disabled={isLoading}
-                      onClick={createCategory}
+                      onClick={handleSubmit(createCategory)}
                     >
                       {isLoading ? (
                         <span

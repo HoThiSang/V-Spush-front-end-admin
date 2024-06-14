@@ -1,0 +1,74 @@
+.profile-container {
+    margin-top: 20px;
+}
+
+.sidebar {
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+}
+
+.sidebar .side-menu {
+    padding: 20px;
+}
+
+.sidebar .user-icon img {
+    border: 2px solid #dee2e6;
+    padding: 5px;
+}
+
+.sidebar .list-group-item {
+    border: none;
+}
+
+.sidebar .list-group-item a {
+    color: #495057;
+    text-decoration: none;
+}
+
+.sidebar .list-group-item a:hover {
+    color: #007bff;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+.main-content .section {
+    margin-bottom: 20px;
+}
+
+.main-content .card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.main-content .button-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content .button-wrapper .btn {
+    margin-bottom: 10px;
+}
+
+.main-content .text-muted {
+    font-size: 0.875rem;
+}
+
+.main-content .form-control {
+    border-radius: 0.25rem;
+}
+
+.main-content .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.main-content .btn-outline-secondary {
+    border-color: #6c757d;
+    color: #6c757d;
+}
+
+.main-content .btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: #fff;
+}

@@ -62,10 +62,8 @@ function Order() {
                             toggleMenu={()=>toggleMenu(index)}
                             openedMenuIndex={openedMenuIndex}
                             />
-
                       ))
                     }
-
               </tbody>
             </table>
           </div>

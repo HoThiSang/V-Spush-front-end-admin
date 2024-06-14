@@ -14,11 +14,9 @@ const Login = () => {
             const response = await axiosService.post("/login", data);
             console.log('User data', response.data);
             if (response.data.user) {
-                // Save to localStorage
                 localStorage.setItem('authToken', response.data.token);
                 localStorage.setItem('user', JSON.stringify(response.data.user));
-                // Navigate to the homepage
-                navigate("/categories");
+                navigate("/home-page");
             } else {
                 console.log(response.data.error);
             }

@@ -1,6 +1,6 @@
 import axiosService from "../../services/configAxios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useForm } from "react-hook-form";
 import "./style.css";
 import AdminLayout from "../../layouts/AdminLayout";
@@ -16,6 +16,7 @@ function UpdateContact() {
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
+  const navigate =useNavigate();
 
  
   const {
@@ -33,7 +34,7 @@ function UpdateContact() {
       const res = await axiosService.get(`/admin-view-contact/${id}`);
       setContact(res.data.data);
     } catch (error) {
-      console.error("Failed to fetch contact", error);
+      console.log("Failed to fetch contact", error);
     }
   };
 
@@ -48,6 +49,7 @@ function UpdateContact() {
       setContact(res.data);
       setSuccessMessage("Reply email is successfully!");
       setIsSuccessModalVisible(true);
+      navigate("/contacts");
     } catch (error) {
       setErrorMessage("Failed to update contact !");
       setIsErrorModalVisible(true);
@@ -62,13 +64,13 @@ function UpdateContact() {
           <h4 className="fw-bold py-3 mb-4">
             <span className="text-muted fw-light">Forms /</span> Reply email{" "}
           </h4>
-          <form onSubmit={handleSubmit(updateContact)}>
+          <form >
 
             <div className="row">
               <div className="col-xl">
                 <div className="card mb-4">
                   <div className="card-header d-flex justify-content-between align-items-center">
-                    <h5 className="mb-0">Create new category</h5>
+                    <h5 className="mb-0">Reply email</h5>
                     <small className="text-muted float-end">l</small>
                   </div>
                   <div className="card-body">
@@ -104,11 +106,14 @@ function UpdateContact() {
                         setContact({ ...contact, message: e.target.value });
                       }}
                     />
+                    {errors.message && (
+                  <p className="error-input">{errors.message.message}</p>
+                )}
                     <button
                       className="btn btn-primary "
-                      type="button"
+                      type="submit"
                       disabled={isLoading}
-                      onClick={updateContact}
+                      onClick={handleSubmit(updateContact)}
                     >
                       {isLoading ? (
                         <span
@@ -135,6 +140,7 @@ function UpdateContact() {
           onCancel={() => setIsErrorModalVisible(false)}
         >
           <p>{errorMessage}</p>
+          
         </Modal>
         <Modal
           title="Success"
