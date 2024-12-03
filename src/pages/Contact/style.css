@@ -1,0 +1,31 @@
+.row-update-contact {
+  margin-top: 40px;
+}
+.update-contact {
+  text-align: center;
+}
+.object-contact {
+  color: black;
+  font-size: 20px;
+}
+.input-update-contact {
+  width: 100%;
+  min-height: 50%;
+  margin-bottom: 20px;
+}
+.success-contact {
+  color: green;
+  font-size: 10px;
+  float: left;
+  border: 2px solid blue;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+}
+.error-input {
+  color: red;
+}
+.form-update-contact {
+  background-color: white;
+}

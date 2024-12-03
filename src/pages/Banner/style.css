@@ -1,0 +1,8 @@
+.error-message {
+    color: red;
+    margin-top: 5px;
+}
+.custom-image {
+    width: 200px; /* Hoặc bất kỳ kích thước nào bạn muốn */
+    height: auto; /* Giữ tỷ lệ hình ảnh */
+}

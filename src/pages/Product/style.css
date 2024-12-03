@@ -1,0 +1,32 @@
+.image-product {
+  max-width: 250px;
+}
+
+.dropdown-menu {
+  display: none;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.btn-create-new {
+  margin-left: 10px;
+}
+.product-pagination{
+  margin-left: 400px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+}
+.image-preview{
+  max-width: 250px;
+  margin-left:20px;
+}
+.back{
+  margin-right: 20px;
+}
